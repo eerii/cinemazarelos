@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components'
 const GlobalStyle = createGlobalStyle`
     html, body {
         padding: 0;
-        margin: 2%;
+        margin: 0;
         height: 100%;
         color: ${ props => props.theme.colors.main };
         background-color: ${ props => props.theme.colors.background };

@@ -10,6 +10,7 @@ export const MainTheme: DefaultTheme = {
         main: '#f081c7',
         secondary: '#f5d47a',
         background: '#262d4a',
+        dark_background: '#191c29',
     },
 }
 
@@ -18,6 +19,7 @@ export const SecretTheme: DefaultTheme = {
         main: '#262d4a',
         secondary: '#f5d47a',
         background: '#f081c7',
+        dark_background: '#8a4570',
     }
 }
 

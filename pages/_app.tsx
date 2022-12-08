@@ -1,8 +1,11 @@
 import type { AppProps } from "next/app"
 import { useEffect, useState } from "react"
 import { ThemeProvider } from "styled-components"
+
 import GlobalStyle from "../styles/global_styles"
 import { ThemeList } from "../styles/themes"
+
+import Navigation from "../components/navbar"
 
 /*
  *  Página principal de Next.js
@@ -22,6 +25,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     return <>
         <ThemeProvider theme={ThemeList[theme]}>
             <GlobalStyle/>
+            <Navigation/>
             <Component {...pageProps}/>
         </ThemeProvider>
     </>
