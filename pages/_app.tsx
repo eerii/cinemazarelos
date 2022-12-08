@@ -1,6 +1,30 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import type { AppProps } from "next/app"
+import { useEffect, useState } from "react"
+import { ThemeProvider } from "styled-components"
+import GlobalStyle from "../styles/global_styles"
+import { ThemeList } from "../styles/themes"
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+/*
+ *  Página principal de Next.js
+ */
+
+const App = ({ Component, pageProps }: AppProps) => {
+    // Selección del tema
+    //  - Si no hay tema en localStorage, se usa el tema principal
+    //  - Si hay tema en localStorage, se usa ese tema (se puede utilizar el tema secreto)
+    const [theme, setTheme] = useState("main");
+    useEffect(() => {
+        const theme = localStorage.getItem("theme");
+        theme && setTheme(theme);
+    }, [])
+
+    // Página principal (utiliza el gestor de temas de styled-components)
+    return <>
+        <ThemeProvider theme={ThemeList[theme]}>
+            <GlobalStyle/>
+            <Component {...pageProps}/>
+        </ThemeProvider>
+    </>
 }
+
+export default App
