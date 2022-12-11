@@ -18,11 +18,16 @@ export const NavLogo = styled.h1`
     color: ${ props => props.theme.colors.secondary };
 `;
 
-export const NavLinks = styled.div`
-    display: flex;
+export const NavLogoFirst = styled.span`
+    color: ${ props => props.theme.colors.main };
 `;
 
-export const NavItem = styled.a`
+export const NavLinks = styled.div`
+    display: flex;
+    flex-grow: 0;
+`;
+
+export const NavItem = styled.h3`
     margin: 0 16px;
 
     color: ${ props => props.theme.colors.secondary };
