@@ -1,4 +1,4 @@
-import { DefaultTheme } from 'styled-components'
+import { DefaultTheme } from "styled-components"
 
 /*
  * Definición de los temas de la web
@@ -7,19 +7,19 @@ import { DefaultTheme } from 'styled-components'
 
 export const MainTheme: DefaultTheme = {
     colors: {
-        main: '#f081c7',
-        secondary: '#f5d47a',
-        background: '#262d4a',
-        dark_background: '#191c29',
+        main: "#f081c7",
+        secondary: "#f5d47a",
+        background: "#262d4a",
+        dark_background: "#191c29",
     },
 }
 
 export const SecretTheme: DefaultTheme = {
     colors: {
-        main: '#262d4a',
-        secondary: '#f5d47a',
-        background: '#f081c7',
-        dark_background: '#8a4570',
+        main: "#262d4a",
+        secondary: "#f5d47a",
+        background: "#f081c7",
+        dark_background: "#8a4570",
     }
 }
 
