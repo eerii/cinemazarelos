@@ -1,0 +1,15 @@
+/* Main theme */
+:root {
+    --theme-color-primary: #f081c7;
+    --theme-color-secondary: #f5d47a;
+    --theme-color-background: #222945;
+    --theme-color-dark-background: #191c29;
+}
+
+/* Secret theme */
+html[data-theme="secret"] {
+    --theme-color-primary: #f5d47a;
+    --theme-color-secondary: #f081c7;
+    --theme-color-background: #191c29;
+    --theme-color-dark-background: #222945;
+}
