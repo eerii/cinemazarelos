@@ -1,19 +1,10 @@
-import Head from "next/head"
-import { PlaceholderMovie, Title } from "../styles/main_styles"
+"use client"
 
-/*
- *  Página de inicio
- */
+import { PlaceholderMovie, Title } from "../styles/main_styles"
 
 const Home = () => {
     return (
         <div>
-            <Head>
-                <title>cinemazarelos</title>
-                <meta name="description" content="A web do ciclo de cine da facultade de Filosofía USC" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-
             <main style={{ margin: "2%" }}>
                 <div style={{ display: "flex", flexBasis: "1", flexWrap: "wrap", overflowY: "hidden" }}>
                     <PlaceholderMovie style={{ width: "200px", height: "300px", margin: "16px" }}/>

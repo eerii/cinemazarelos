@@ -1,3 +1,5 @@
+"use client"
+
 import { NavItem, NavLogo, NavLogoFirst, NavLinks, NavStyle } from "../styles/nav_styles"
 import Icon from "./icon"
 
