@@ -2,9 +2,9 @@ import Link from "next/link"
 
 import style from "./nav.module.css"
 
-import { InstagramIcon, FilmAffinityIcon, LetterboxdIcon } from "./icons/icons"
+import { InstagramIcon, FilmAffinityIcon, LetterboxdIcon } from "../icons/icons"
 
-const Navigation = () => {
+export default () => {
     return <div className={style.nav}>
         <h1 className={style.logo}><span className={style.logo_alt}>CineMa</span>zarelos</h1>
         <div className={style.links}>
@@ -18,5 +18,3 @@ const Navigation = () => {
         </div>
     </div>
 }
-
-export default Navigation

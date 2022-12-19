@@ -1,6 +1,6 @@
-import style from "./home.module.css"
+import style from "./(styles)/home.module.css"
 
-const Home = () => {
+export default () => {
     return (
         <main>
             <div style={{ display: "flex", flexBasis: "1", flexWrap: "wrap", overflowY: "hidden" }}>
@@ -14,7 +14,5 @@ const Home = () => {
             </div>
             <div className={style.placeholder_movie} style={{ width: "50%", height: "400px" }}/>
         </main>
-        )
-    }
-
-export default Home
+    )
+}

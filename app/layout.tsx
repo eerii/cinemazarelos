@@ -1,10 +1,11 @@
-import { Gazpacho } from "../styles/font_styles"
-import "../styles/themes.css"
-import "../styles/global_styles.css"
+import { Gazpacho } from "./(styles)/font_styles"
+import "./(styles)/themes.css"
+import "./(styles)/global_styles.css"
 
-import Navigation from "./nav/navbar"
+import Navigation from "./(components)/navigation/navbar"
+import Analytics from "./(components)/analytics"
 
-const Layout = ({children} : {children: React.ReactNode}) => {
+export default ({children} : {children: React.ReactNode}) => {
     return (
         <html lang="es" className={Gazpacho.variable}>
             <body>
@@ -16,9 +17,9 @@ const Layout = ({children} : {children: React.ReactNode}) => {
                         <p>Creado con amor polo equipo cinemazarelos da facultade de Filosofía USC</p>
                     </div>
                 </footer>
+
+                <Analytics/>
             </body>
         </html>
     )
 }
-
-export default Layout
