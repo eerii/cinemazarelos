@@ -6,10 +6,10 @@ import { InstagramIcon, FilmAffinityIcon, LetterboxdIcon } from "../icons/icons"
 
 export default () => {
     return <div className={style.nav}>
-        <h1 className={style.logo}><span className={style.logo_alt}>CineMa</span>zarelos</h1>
+        <Link href="/"><h1 className={style.logo}><span className={style.logo_alt}>CineMa</span>zarelos</h1></Link>
         <div className={style.links}>
             <Link href="/"><h3 className={style.item}>inicio</h3></Link>
-            <Link href="/programacion"><h3 className={style.item}>programación</h3></Link>
+            <Link href="/blog"><h3 className={style.item}>blog</h3></Link>
             <Link href="/about"><h3 className={style.item}>sobre nosotres</h3></Link>
 
             <a href="https://www.instagram.com/cinemazarelos_usc" target="_blank" rel="noopener"><InstagramIcon className={style.icon}/></a>

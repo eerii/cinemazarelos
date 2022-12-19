@@ -1,3 +1,7 @@
-export default () => <main>
-    <h1>En progreso...</h1>
-</main>
+import Content, {frontmatter} from "./content.mdx"
+
+export default () => {
+    return (<main>
+        <Content/>
+    </main>)
+}

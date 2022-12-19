@@ -3,7 +3,8 @@ import "./(styles)/themes.css"
 import "./(styles)/global_styles.css"
 
 import Navigation from "./(components)/navigation/navbar"
-import Analytics from "./(components)/analytics"
+import Footer from "./(components)/footer"
+import Analytics from "./(lib)/analytics"
 
 export default ({children} : {children: React.ReactNode}) => {
     return (
@@ -11,13 +12,7 @@ export default ({children} : {children: React.ReactNode}) => {
             <body>
                 <Navigation/>
                 {children}
-
-                <footer>
-                    <div style={{ margin: "2%", paddingBottom: "8px" }}>
-                        <p>Creado con amor polo equipo cinemazarelos da facultade de Filosofía USC</p>
-                    </div>
-                </footer>
-
+                <Footer/>
                 <Analytics/>
             </body>
         </html>
