@@ -8,8 +8,8 @@ export default async ({ propiedades, n, poster, orden, asc }: { propiedades: str
     const { data, error } = await SupabaseClient
         .from("peliculas")
         .select(propiedades + (poster ? ", poster" : ""))
-        //.order(orden || "id", { ascending: asc || true })
-        //.limit(n || 1000)
+        .order(orden || "id", { ascending: asc || true })
+        .limit(1)
 
     // Completar la información que no se encuentra con la API de TMDB
     if (error || !data) {

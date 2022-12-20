@@ -4,7 +4,7 @@ import Image from "next/image"
 import style from "./carrousel.module.css"
 
 export default async () => {
-    const peliculas = await Peliculas({propiedades: "id, titulo, year, director, duracion, fecha, presentado_por, idioma, sinopsis", n: 5, poster: true, orden: "fecha", asc: false})
+    const peliculas = await Peliculas({propiedades: "id, titulo, year, director, duracion, fecha, presentado_por, idioma, sinopsis", n: 1, poster: true, orden: "fecha", asc: false})
 
     return (
         <div style={{ display: "flex", flexBasis: "1", flexWrap: "wrap", overflowY: "hidden" }}>
