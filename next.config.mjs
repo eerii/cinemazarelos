@@ -25,6 +25,15 @@ const nextConfig = {
         appDir: true,
     },
 
+    images: {
+        remotePatterns: [{
+            protocol: 'https',
+            hostname: '**.supabase.co',
+            port: '',
+            pathname: '/storage/v1/object/public/posters/**',
+        },]
+    },
+
     webpack(config) {
         config.module.rules.push({
             test: /\.svg$/i,
