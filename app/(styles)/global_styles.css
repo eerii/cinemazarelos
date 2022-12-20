@@ -8,8 +8,8 @@ html, body {
 }
 
 main {
-    margin: 0 2%;
-    min-height: 80vh;
+    padding: 2%;
+    min-height: calc(100vh - 128px);
 }
 
 h1, h2, h3, h4 {
@@ -27,7 +27,7 @@ a {
 }
 
 footer {
+    height: 64px;
     padding: 8px 32px;
-    margin-top: 8px;
     background-color: var(--theme-color-dark-background);
 }

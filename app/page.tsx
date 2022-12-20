@@ -4,7 +4,7 @@ import style from "./(styles)/home.module.css"
 
 export default () => {
     return (
-        <main>
+        <main className={style.background}>
             {
             /* @ts-expect-error Server Component */
             <Carrousel/>
