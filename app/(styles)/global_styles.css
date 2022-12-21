@@ -1,3 +1,7 @@
+:root {
+    --sqrt-2: 1.4142135623730951;
+}
+
 html, body {
     padding: 0;
     margin: 0;

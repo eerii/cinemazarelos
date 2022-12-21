@@ -1,6 +1,46 @@
-.placeholder_movie {
-    width: 200px;
-    height: 300px;
+.poster {
     margin: 16px;
+}
+
+.carrousel {
+    display: flex;
+}
+
+.poster {
+    aspect-ratio: 1/var(--sqrt-2);
+    height: 300px;
+    flex: 0 0 auto;
+    margin: 16px;
+    border-radius: 6px;
+    transition: transform 0.2s;
+}
+
+.poster:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+}
+
+.placeholder {
     background-color: var(--theme-color-dark-background);
+}
+
+.pelicula_seleccionada {
+    margin-right: auto;
+    display: flex;
+}
+
+.descripcion {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-height: 300px;
+}
+
+.elem {
+    margin: 12px 0;
+}
+
+.sinopsis {
+    text-align: justify;
+    overflow-y: scroll;
 }
