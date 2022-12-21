@@ -13,29 +13,33 @@ const por_defecto = {
     presentado_por: ["Lorem ipsum"]
 }
 
-export default ({ pelicula: p, index }: { pelicula: any, index: number }) => {
+export type PropsPelicula = {
+    pelicula: any,
+}
+
+export default ({ pelicula: p }: PropsPelicula) => {
     const pelicula = p ? p : por_defecto
 
-    const Poster = () => {
-        return (
-            "poster" in pelicula ?
-            <Image src={pelicula.poster.data?.publicUrl} alt={pelicula.titulo} width={300/Math.SQRT2} height={300} className={style.poster}/> :
-            <div className={`${style.poster} ${style.placeholder}`}/>
-        )
-    }
+    const Poster = () => (
+        "poster" in pelicula ?
+        <Image src={pelicula.poster.data?.publicUrl} alt={pelicula.titulo} width={300/Math.SQRT2} height={300} className={style.poster}/> :
+        <div className={`${style.poster} ${style.placeholder}`}/>
+    )
+
+    const Descripcion = () => (
+        <div className={style.descripcion}>
+            <h3 className={style.elem} style={{marginTop: "16px"}}>{pelicula.titulo} ({pelicula.year})</h3>
+            <p className={style.elem}>{pelicula.duracion} min - {pelicula.idioma} - {pelicula.director}</p>
+            <p className={`${style.sinopsis} ${style.elem}`}>{pelicula.sinopsis}</p>
+            <h4 className={style.elem}>Fecha: {pelicula.fecha}</h4>
+            <p className={style.elem}>Presentado por {pelicula.presentado_por.join(", ")}</p>
+        </div>
+    )
 
     return (
-        index == 0 ?
-        <div className={style.pelicula_seleccionada}>
+        <div>
             <Poster/>
-            <div className={style.descripcion}>
-                <h3 className={style.elem} style={{marginTop: "16px"}}>{pelicula.titulo} ({pelicula.year})</h3>
-                <p className={style.elem}>{pelicula.duracion} min - {pelicula.idioma} - {pelicula.director}</p>
-                <p className={`${style.sinopsis} ${style.elem}`}>{pelicula.sinopsis}</p>
-                <h4 className={style.elem}>Fecha: {pelicula.fecha}</h4>
-                <p className={style.elem}>Presentado por {pelicula.presentado_por.join(", ")}</p>
-            </div>
-        </div> : 
-        <Poster/>
+            <Descripcion/>
+        </div>
     )
 }
