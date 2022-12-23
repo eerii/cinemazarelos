@@ -4,7 +4,7 @@ import Estado from "./estado"
 
 import style from "./carrousel.module.css"
 
-export default async () => {
+const Carrousel = async () => {
     const n = 3
 
     const peliculas = await ListaPeliculas({
@@ -21,3 +21,5 @@ export default async () => {
         </Estado>
     </div>)
 }
+
+export default Carrousel

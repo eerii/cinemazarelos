@@ -1,7 +1,9 @@
 import Content, {frontmatter} from "./content.mdx"
 
-export default () => {
+const About = () => {
     return (<main>
         <Content/>
     </main>)
 }
+
+export default About

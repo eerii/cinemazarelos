@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation"
 
-export default () => {
+const Error = () => {
     const router = useRouter()
     router.push("/")
 
@@ -12,3 +12,5 @@ export default () => {
         </main>
     )
 }
+
+export default Error

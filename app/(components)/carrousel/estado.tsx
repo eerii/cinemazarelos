@@ -9,7 +9,7 @@ interface Pelicula extends PropsPelicula {
     children: React.ReactNode[]
 }
 
-export default ({ children, n } : { children: React.ReactNode[], n: number }) => {
+const EstadoCarrousel = ({ children, n } : { children: React.ReactNode[], n: number }) => {
     // Componente de cliente para poder utilizar el estado de react y cambiar el carrousel
     const [activo, setActivo] = useState(0)
     const [previo, setPrevio] = useState(-1)
@@ -51,3 +51,5 @@ export default ({ children, n } : { children: React.ReactNode[], n: number }) =>
                 </>)
         })}</>)
 }
+
+export default EstadoCarrousel

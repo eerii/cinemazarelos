@@ -1,10 +1,11 @@
 import Carrousel from "./(components)/carrousel/carrousel"
 
-export default () => {
-    return (
-        <main>
-            {/* @ts-expect-error Server Component */}
-            <Carrousel/>
-        </main>
-    )
-}
+const Main = () => 
+    <main>
+        {
+        /* @ts-expect-error Server Component */
+        <Carrousel/>
+        }
+    </main>
+
+export default Main

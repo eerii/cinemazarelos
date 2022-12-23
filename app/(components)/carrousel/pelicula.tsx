@@ -17,7 +17,7 @@ export type PropsPelicula = {
     pelicula: any,
 }
 
-export default ({ pelicula: p }: PropsPelicula) => {
+const PeliculaCarrousel = ({ pelicula: p }: PropsPelicula) => {
     const pelicula = p ? p : por_defecto
 
     const Poster = () => (
@@ -43,3 +43,5 @@ export default ({ pelicula: p }: PropsPelicula) => {
         </div>
     )
 }
+
+export default PeliculaCarrousel
