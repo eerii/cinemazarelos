@@ -21,10 +21,10 @@ const EstadoCarrousel = ({ children, n } : { children: React.ReactNode[], n: num
 
     // Cambiar el carrousel cada 5 segundos
     useEffect(() => {
-        const interval = setInterval(() => {
+        /*const interval = setInterval(() => {
             cambiarActivo((activo + 1) % n)
         }, 5000)
-        return () => clearInterval(interval)
+        return () => clearInterval(interval)*/
     }, [activo])
 
     return (<>
@@ -37,18 +37,17 @@ const EstadoCarrousel = ({ children, n } : { children: React.ReactNode[], n: num
             const [poster, descripcion] = child.props.children
             if (!React.isValidElement(poster) || !React.isValidElement(descripcion))
                 return child
-
             
             // Rodear el poster y la descripción con un div para poder cambiar el estado
             return (
-                <>
+                <div className={`${style.card} ${index !== activo ? style.inactiva : null}`}>
                     <div onClick={() => cambiarActivo(index)}>
                         {poster}
                     </div>
-                    <div className={index == activo ? style.descripcion : style.descripcion_inactiva}>
+                    <div className={style.descripcion}>
                         {descripcion}
                     </div>
-                </>)
+                </div>)
         })}</>)
 }
 

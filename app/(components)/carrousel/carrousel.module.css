@@ -1,17 +1,40 @@
-.poster {
-    margin: 16px;
-}
-
 .carrousel {
     display: flex;
+    gap: 1rem;
+
+    --poster-width: calc(300px/var(--sqrt-2) + 2rem + 0.3rem/2)
+}
+
+.card {
+    display: flex;
+    overflow: hidden;
+
+    border-radius: 0.5rem;
+
+    box-shadow:  8px 8px 16px #0000001b,
+                -8px -8px 16px #ffffff06;
+
+    width: calc(90vw - 2 * var(--poster-width));
+    transition: width 0.5s;
+
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.inactiva {
+    width: var(--poster-width);
+    flex-grow: 0;
+    flex-shrink: 0;
 }
 
 .poster {
     aspect-ratio: 1/var(--sqrt-2);
     height: 300px;
+    margin: 1rem;
+    border-radius: 0.3rem;
+
     flex: 0 0 auto;
-    margin: 16px;
-    border-radius: 6px;
+
     transition: transform 0.2s cubic-bezier(0.12, 0.23, 0.44, 1.54);
 }
 
@@ -25,45 +48,26 @@
 }
 
 .descripcion {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
     max-height: 300px;
-    width: 0;
-    opacity: 0;
-    animation: aparecer 0.5s forwards;
+    overflow: hidden;
 }
 
-@keyframes aparecer {
-    60% {
-        opacity: 0;
-    }
-    100% {
-        width: 100%;
-        opacity: 1;
-    }
+.inactiva .descripcion {
+    animation: descripcion-out 0.5s forwards;
 }
 
-.descripcion_inactiva {
-    animation: desaparecer 0.5s forwards;
-    max-height: 300px;
-    width: 100%;
-    opacity: 1;
-}
-
-@keyframes desaparecer {
-    40% {
+@keyframes descripcion-out {
+    50% {
         opacity: 0;
     }
-    100% {
+    to {
+        transform: translateY(20%);
         opacity: 0;
-        width: 0;
-        display: none;
     }
 }
 
 .elem {
-    margin: 12px 0;
+    margin: 1rem 0;
 }
 
 .sinopsis {
@@ -73,7 +77,6 @@
     
     display: -webkit-box;
     -webkit-box-orient: vertical;
-
     line-clamp: 3;
     -webkit-line-clamp: 3;
 }

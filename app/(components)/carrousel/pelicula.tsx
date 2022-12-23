@@ -8,7 +8,7 @@ const por_defecto = {
     duracion: 100,
     idioma: "Idioma",
     director: "Director",
-    sinopsis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    sinopsis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     fecha: "2023-01-01",
     presentado_por: ["Lorem ipsum"]
 }
@@ -27,11 +27,11 @@ const PeliculaCarrousel = ({ pelicula: p }: PropsPelicula) => {
     )
 
     const Descripcion = () => (
-        <div className={style.descripcion}>
-            <h3 className={style.elem} style={{marginTop: "16px"}}>{pelicula.titulo} ({pelicula.year})</h3>
+        <div>
+            <h3 className={style.elem} style={{marginTop: "1rem"}}>{pelicula.titulo} ({pelicula.year})</h3>
             <p className={style.elem}>{pelicula.duracion} min - {pelicula.idioma} - {pelicula.director}</p>
             <p className={`${style.sinopsis} ${style.elem}`}>{pelicula.sinopsis}</p>
-            <h4 className={style.elem}>Fecha: {pelicula.fecha}</h4>
+            <p className={style.elem}>Fecha: {pelicula.fecha}</p>
             <p className={style.elem}>Presentado por {pelicula.presentado_por.join(", ")}</p>
         </div>
     )
