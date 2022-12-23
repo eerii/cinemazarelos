@@ -26,20 +26,24 @@ const PeliculaCarrousel = ({ pelicula: p }: PropsPelicula) => {
         <div className={`${style.poster} ${style.placeholder}`}/>
     )
 
-    const Descripcion = () => (
+    const Info = () => (
         <div>
             <h3 className={style.elem} style={{marginTop: "1rem"}}>{pelicula.titulo} ({pelicula.year})</h3>
             <p className={style.elem}>{pelicula.duracion} min - {pelicula.idioma} - {pelicula.director}</p>
-            <p className={`${style.sinopsis} ${style.elem}`}>{pelicula.sinopsis}</p>
             <p className={style.elem}>Fecha: {pelicula.fecha}</p>
             <p className={style.elem}>Presentado por {pelicula.presentado_por.join(", ")}</p>
         </div>
     )
 
+    const Sinopsis = () => (
+        <p className={`${style.sinopsis} ${style.elem}`}>{pelicula.sinopsis}</p>
+    )
+
     return (
         <div>
             <Poster/>
-            <Descripcion/>
+            <Info/>
+            <Sinopsis/>
         </div>
     )
 }

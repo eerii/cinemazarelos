@@ -43,8 +43,8 @@ const EstadoCarrousel = ({ children } : { children: React.ReactNode[] }) => {
                 return child
 
             // Comprobar que tenga un poster y una descripcion
-            const [poster, descripcion] = child.props.children
-            if (!React.isValidElement(poster) || !React.isValidElement(descripcion))
+            const [poster, info, sinopsis] = child.props.children
+            if (!React.isValidElement(poster) || !React.isValidElement(info) || !React.isValidElement(sinopsis))
                 return child
             
             // Rodear el poster y la descripción con un div para poder cambiar el estado
@@ -53,8 +53,12 @@ const EstadoCarrousel = ({ children } : { children: React.ReactNode[] }) => {
                     <div onClick={() => setActivo(index)}>
                         {poster}
                     </div>
-                    <div className={style.descripcion}>
-                        {descripcion}
+                    <div className={style.informacion}>
+                        {info}
+                        {!width || width > 768 ? sinopsis : null}
+                    </div>
+                    <div>
+                        {width && width <= 768 ? sinopsis : null}
                     </div>
                 </div>)
         })}</>)
