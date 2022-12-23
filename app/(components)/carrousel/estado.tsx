@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
+import { useWindowSize } from "../../(lib)/hooks"
 
 import style from "./carrousel.module.css"
 
@@ -9,26 +10,34 @@ interface Pelicula extends PropsPelicula {
     children: React.ReactNode[]
 }
 
-const EstadoCarrousel = ({ children, n } : { children: React.ReactNode[], n: number }) => {
+const EstadoCarrousel = ({ children } : { children: React.ReactNode[] }) => {
     // Componente de cliente para poder utilizar el estado de react y cambiar el carrousel
     const [activo, setActivo] = useState(0)
-    const [previo, setPrevio] = useState(-1)
-
-    const cambiarActivo = (nuevo: number) => {
-        setPrevio(activo)
-        setActivo(nuevo)
-    }
+    const [number, setNumber] = useState(3)
+    const {width} = useWindowSize()
 
     // Cambiar el carrousel cada 5 segundos
     useEffect(() => {
-        /*const interval = setInterval(() => {
-            cambiarActivo((activo + 1) % n)
+        const interval = setInterval(() => {
+            setActivo((activo + 1) % number)
         }, 5000)
-        return () => clearInterval(interval)*/
-    }, [activo])
+        return () => clearInterval(interval)
+    }, [activo, number])
+
+    // Cambiar el número de películas a mostrar en función del tamaño de la pantalla
+    useEffect(() => {
+        if (width) {
+            const n = width > 1200 ? 3 : width > 768 ? 2 : 1
+            setNumber(n)
+            if (activo >= n)
+                setActivo(0)
+        }
+    }, [activo, width])
 
     return (<>
         {React.Children.map(children, (child, index) => {
+            if (index >= number)
+                return null
             // Comprobar que el elemento sea una pelicula
             if (!React.isValidElement<Pelicula>(child))
                 return child
@@ -41,7 +50,7 @@ const EstadoCarrousel = ({ children, n } : { children: React.ReactNode[], n: num
             // Rodear el poster y la descripción con un div para poder cambiar el estado
             return (
                 <div className={`${style.card} ${index !== activo ? style.inactiva : null}`}>
-                    <div onClick={() => cambiarActivo(index)}>
+                    <div onClick={() => setActivo(index)}>
                         {poster}
                     </div>
                     <div className={style.descripcion}>

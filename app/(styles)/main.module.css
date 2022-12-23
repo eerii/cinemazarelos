@@ -1,0 +1,6 @@
+.calendario_reviews {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin: 1rem;
+}

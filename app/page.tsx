@@ -1,11 +1,17 @@
 import Carrousel from "./(components)/carrousel/carrousel"
+import Calendario from "./(components)/calendario/calendario"
+import UltimasReviews from "./(components)/reviews/ultimas_reviews"
+
+import style from "./(styles)/main.module.css"
 
 const Main = () => 
     <main>
-        {
-        /* @ts-expect-error Server Component */
+        {/* @ts-expect-error Server Component */}
         <Carrousel/>
-        }
+        <div className={style.calendario_reviews}>
+            <Calendario/>
+            <UltimasReviews/>
+        </div>
     </main>
 
 export default Main

@@ -2,7 +2,8 @@
     display: flex;
     gap: 1rem;
 
-    --poster-width: calc(300px/var(--sqrt-2) + 2rem + 0.3rem/2)
+    --poster-height: 300px;
+    --poster-width: calc(var(--poster-height)/var(--sqrt-2) + 2rem + 0.3rem/2)
 }
 
 .card {
@@ -10,9 +11,6 @@
     overflow: hidden;
 
     border-radius: 0.5rem;
-
-    box-shadow:  8px 8px 16px #0000001b,
-                -8px -8px 16px #ffffff06;
 
     width: calc(90vw - 2 * var(--poster-width));
     transition: width 0.5s;
@@ -29,7 +27,7 @@
 
 .poster {
     aspect-ratio: 1/var(--sqrt-2);
-    height: 300px;
+    height: var(--poster-height);
     margin: 1rem;
     border-radius: 0.3rem;
 
@@ -48,7 +46,7 @@
 }
 
 .descripcion {
-    max-height: 300px;
+    max-height: var(--poster-height);
     overflow: hidden;
 }
 
@@ -79,4 +77,10 @@
     -webkit-box-orient: vertical;
     line-clamp: 3;
     -webkit-line-clamp: 3;
+}
+
+@media screen and (max-width: 768px) {
+    .carrousel {
+        --poster-height: 200px;
+    }
 }

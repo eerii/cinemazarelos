@@ -1,0 +1,38 @@
+.title {
+    margin: 0 0 1rem 0;
+}
+
+.calendario {
+    --tile-width: 5rem;
+    --tile-height: 4rem;
+    --grid-gap: 1rem;
+
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap: var(--grid-gap);
+    width: calc(7 * var(--tile-width) + 6 * var(--grid-gap));
+}
+
+.dia {
+    width: var(--tile-width);
+    height: var(--tile-height);
+    background-color: var(--theme-color-dark-background);
+    border-radius: 0.3em;
+    transition: transform 0.2s cubic-bezier(0.12, 0.23, 0.44, 1.54),
+                background-color 0.35s;
+}
+
+.dia:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    background-color: var(--theme-color-primary);
+}
+
+@media screen and (max-width: 768px) {
+    .calendario {
+        --tile-width: 4rem;
+        --tile-height: 3rem;
+        --grid-gap: 0.5rem;
+    }
+}
