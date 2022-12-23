@@ -3,7 +3,7 @@ import { DatosPelicula } from "../tmdb"
 
 export const revalidate = 21600 // Cada 6 horas
 
-export default async ({ propiedades, n = 1, poster = false, orden = "id", asc = true }: { propiedades: string, n?: number, poster?: boolean, orden?: string, asc?: boolean }) => {
+const PeliculasSupabase = async ({ propiedades, n = 1, poster = false, orden = "id", asc = true }: { propiedades: string, n?: number, poster?: boolean, orden?: string, asc?: boolean }) => {
     if (!SupabaseClient) return Array(n).fill(null)
     
     // Obtener las películas de la base de datos
@@ -71,3 +71,5 @@ export default async ({ propiedades, n = 1, poster = false, orden = "id", asc = 
 
     return peliculas
 }
+
+export default PeliculasSupabase

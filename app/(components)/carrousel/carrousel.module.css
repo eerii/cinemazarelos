@@ -28,6 +28,7 @@
 .poster {
     aspect-ratio: 1/var(--sqrt-2);
     height: var(--poster-height);
+    width: var(--poster-height)/var(--sqrt-2);
     margin: 1rem;
     border-radius: 0.3rem;
 
