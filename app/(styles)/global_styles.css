@@ -36,3 +36,9 @@ footer {
     padding: 1rem;
     margin: 0;
 }
+
+@media screen and (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
+}

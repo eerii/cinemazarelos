@@ -9,6 +9,7 @@
 .card {
     display: flex;
     overflow: hidden;
+    gap: 1rem;
 
     border-radius: 0.5rem;
 
@@ -29,7 +30,7 @@
     aspect-ratio: 1/var(--sqrt-2);
     height: var(--poster-height);
     width: var(--poster-height)/var(--sqrt-2);
-    margin: 1rem;
+    margin: 1rem 0;
     border-radius: 0.3rem;
 
     flex: 0 0 auto;
@@ -95,6 +96,6 @@
 
     .sinopsis {
         width: 100%;
-        margin: 0 1rem;
+        margin: 0;
     }
 }

@@ -31,7 +31,7 @@
 
 @media screen and (max-width: 768px) {
     .calendario {
-        --tile-width: 4rem;
+        --tile-width: 3rem;
         --tile-height: 3rem;
         --grid-gap: 0.5rem;
     }

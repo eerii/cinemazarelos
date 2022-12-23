@@ -10,6 +10,8 @@ interface Pelicula extends PropsPelicula {
     children: React.ReactNode[]
 }
 
+const mobile_width = 768
+
 const EstadoCarrousel = ({ children } : { children: React.ReactNode[] }) => {
     // Componente de cliente para poder utilizar el estado de react y cambiar el carrousel
     const [activo, setActivo] = useState(0)
@@ -27,12 +29,12 @@ const EstadoCarrousel = ({ children } : { children: React.ReactNode[] }) => {
     // Cambiar el número de películas a mostrar en función del tamaño de la pantalla
     useEffect(() => {
         if (width) {
-            const n = width > 1200 ? 3 : width > 768 ? 2 : 1
+            const n = width > 1200 ? 3 : width > mobile_width ? 2 : 1
             setNumber(n)
             if (activo >= n)
                 setActivo(0)
         }
-    }, [activo, width])
+    }, [activo, width, ])
 
     return (<>
         {React.Children.map(children, (child, index) => {
@@ -55,10 +57,10 @@ const EstadoCarrousel = ({ children } : { children: React.ReactNode[] }) => {
                     </div>
                     <div className={style.informacion}>
                         {info}
-                        {!width || width > 768 ? sinopsis : null}
+                        {!width || width > mobile_width ? sinopsis : null}
                     </div>
                     <div>
-                        {width && width <= 768 ? sinopsis : null}
+                        {width && width <= mobile_width ? sinopsis : null}
                     </div>
                 </div>)
         })}</>)
