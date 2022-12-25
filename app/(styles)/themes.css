@@ -2,8 +2,8 @@
 :root {
     --theme-color-primary: #f081c7;
     --theme-color-secondary: #f5d47a;
-    --theme-color-background: #0e1118;
-    --theme-color-dark-background: #191c29;
+    --theme-color-background: #08090d;
+    --theme-color-alt-background: #13151f;
 }
 
 /* Secret theme */
@@ -11,5 +11,5 @@ html[data-theme="secret"] {
     --theme-color-primary: #f5d47a;
     --theme-color-secondary: #f081c7;
     --theme-color-background: #191c29;
-    --theme-color-dark-background: #222945;
+    --theme-color-alt-background: #222945;
 }

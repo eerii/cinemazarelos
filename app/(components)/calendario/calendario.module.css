@@ -17,16 +17,18 @@
 .dia {
     width: var(--tile-width);
     height: var(--tile-height);
-    background-color: var(--theme-color-dark-background);
+    border: 1px solid var(--theme-color-alt-background);
     border-radius: 0.3em;
     transition: transform 0.2s cubic-bezier(0.12, 0.23, 0.44, 1.54),
-                background-color 0.35s;
+                background-color 0.35s,
+                border-color 0.35s;
 }
 
 .dia:hover {
     cursor: pointer;
     transform: scale(1.05);
-    background-color: var(--theme-color-primary);
+    background-color: #1c234134;
+    border-color: var(--theme-color-primary);
 }
 
 @media screen and (max-width: 768px) {

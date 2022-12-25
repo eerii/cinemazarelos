@@ -34,9 +34,20 @@ const EstadoCarrousel = ({ children } : { children: React.ReactNode[] }) => {
             if (activo >= n)
                 setActivo(0)
         }
-    }, [activo, width, ])
+    }, [activo, width])
 
-    return (<>
+    // Efecto de gradiente en el carrousel
+    const EfectoGradiente = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        for(const card of Array.from(document.getElementsByClassName(style.card)) as HTMLDivElement[]) {
+            const rect = card.getBoundingClientRect(),
+                     x = e.clientX - rect.left,
+                     y = e.clientY - rect.top
+            card.style.setProperty("--x", `${x}px`);
+            card.style.setProperty("--y", `${y}px`);
+        }
+    }
+
+    return (<div className={style.carrousel} onMouseMove={(e) => EfectoGradiente(e)}>
         {React.Children.map(children, (child, index) => {
             if (index >= number)
                 return null
@@ -51,19 +62,19 @@ const EstadoCarrousel = ({ children } : { children: React.ReactNode[] }) => {
             
             // Rodear el poster y la descripción con un div para poder cambiar el estado
             return (
-                <div className={`${style.card} ${index !== activo ? style.inactiva : null}`}>
-                    <div onClick={() => setActivo(index)}>
-                        {poster}
-                    </div>
-                    <div className={style.informacion}>
-                        {info}
-                        {!width || width > mobile_width ? sinopsis : null}
-                    </div>
-                    <div>
-                        {width && width <= mobile_width ? sinopsis : null}
+                <div className={`${style.card} ${index !== activo ? style.inactiva : null}`} onClick={() => setActivo(index)}>
+                    <div className={style.card_content}>
+                        <div>
+                            {poster}
+                        </div>
+                        <div className={style.informacion}>
+                            {info}
+                            {!width || width > mobile_width ? sinopsis : null}
+                        </div>
+                        {width && width <= mobile_width ? <div>sinopsis</div> : null}
                     </div>
                 </div>)
-        })}</>)
+        })}</div>)
 }
 
 export default EstadoCarrousel

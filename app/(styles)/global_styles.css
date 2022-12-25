@@ -7,7 +7,7 @@ html, body {
     margin: 0;
     height: 100%;
     color: var(--theme-color-primary);
-    background-color: var(--theme-color-dark-background);
+    background-color: var(--theme-color-alt-background);
     font-family: sans-serif;
 }
 

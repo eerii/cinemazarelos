@@ -13,11 +13,9 @@ const Carrousel = async () => {
         asc: false
     })
 
-    return (<div className={style.carrousel}>
-        <Estado>
-            {peliculas.map((pelicula: any, index) => <Pelicula key={index} pelicula={pelicula}/>)}
-        </Estado>
-    </div>)
+    return (<Estado>
+        {peliculas.map((pelicula: any, index) => <Pelicula key={index} pelicula={pelicula}/>)}
+    </Estado>)
 }
 
 export default Carrousel
