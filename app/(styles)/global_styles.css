@@ -6,21 +6,25 @@ html, body {
     padding: 0;
     margin: 0;
     height: 100%;
-    color: var(--theme-color-primary);
-    background-color: var(--theme-color-alt-background);
-    font-family: sans-serif;
+    color: var(--color-primary);
+    background-color: var(--color-background);
+    font-family: var(--font-tisa);
+}
+
+body {
+    background-image: radial-gradient(64rem circle at 80vw -16rem, rgba(var(--theme-light-background), 0.4), transparent);
+    padding: 0 2rem;
 }
 
 main {
-    padding: 1rem 2rem;
+    padding: 1rem 0;
     margin: 0;
     min-height: calc(100vh - 6.5rem);
-    background-color: var(--theme-color-background);
 }
 
 h1, h2, h3, h4 {
     font-family: var(--font-gazpacho);
-    color: var(--theme-color-secondary);
+    color: var(--color-secondary);
 }
 
 a {
@@ -33,12 +37,12 @@ a {
 }
 
 footer {
-    padding: 1rem;
+    padding: 1rem 0;
     margin: 0;
 }
 
 @media screen and (max-width: 768px) {
-    main {
-        padding: 1rem;
+    body {
+        padding: 0 1rem;
     }
 }

@@ -64,14 +64,12 @@ const EstadoCarrousel = ({ children } : { children: React.ReactNode[] }) => {
             return (
                 <div className={`${style.card} ${index !== activo ? style.inactiva : null}`} onClick={() => setActivo(index)}>
                     <div className={style.card_content}>
-                        <div>
-                            {poster}
-                        </div>
+                        {poster}
                         <div className={style.informacion}>
                             {info}
                             {!width || width > mobile_width ? sinopsis : null}
                         </div>
-                        {width && width <= mobile_width ? <div>sinopsis</div> : null}
+                        {width && width <= mobile_width ? <div>{sinopsis}</div> : null}
                     </div>
                 </div>)
         })}</div>)

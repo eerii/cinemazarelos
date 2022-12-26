@@ -1,15 +1,27 @@
 /* Main theme */
 :root {
-    --theme-color-primary: #f081c7;
-    --theme-color-secondary: #f5d47a;
-    --theme-color-background: #08090d;
-    --theme-color-alt-background: #13151f;
+    --theme-primary: 240, 129, 199;
+    --theme-secondary: 245, 212, 122;
+    --theme-background: 15, 17, 25;
+    --theme-dark-background: 7, 8, 11;
+    --theme-light-background: 31, 38, 63;
+    --theme-lighter-background: 64, 80, 146;
 }
 
 /* Secret theme */
 html[data-theme="secret"] {
-    --theme-color-primary: #f5d47a;
-    --theme-color-secondary: #f081c7;
-    --theme-color-background: #191c29;
-    --theme-color-alt-background: #222945;
+    --theme-primary: 0, 0, 0;
+    --theme-secondary: 100, 100, 100;
+    --theme-background: 255, 255, 255;
+    --theme-light-background: 0, 0, 0;
+    --theme-lighter-background: 255, 255, 255;
+}
+
+html {
+    --color-primary: rgb(var(--theme-primary));
+    --color-secondary: rgb(var(--theme-secondary));
+    --color-background: rgb(var(--theme-background));
+    --color-dark-background: rgb(var(--theme-dark-background));
+    --color-light-background: rgb(var(--theme-light-background));
+    --color-lighter-background: rgb(var(--theme-lighter-background));
 }

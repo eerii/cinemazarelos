@@ -1,6 +1,10 @@
+.home {
+    margin-top: 1rem;
+}
+
 .calendario_reviews {
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
-    margin: 1rem 0;
+    margin: 2rem 0;
 }

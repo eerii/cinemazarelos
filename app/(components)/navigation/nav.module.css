@@ -1,11 +1,13 @@
 .nav {
     margin: 0;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0rem;
 
     display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 2rem;
+
+    border-bottom: 1px solid var(--color-light-background);
 }
 
 .mobile_wrapper {
@@ -18,11 +20,11 @@
 
 .logo {
     margin: 0;
-    color: var(--theme-color-secondary);
+    color: var(--color-secondary);
 }
 
 .logo_alt {
-    color: var(--theme-color-primary);
+    color: var(--color-primary);
 }
 
 .logo:hover {
@@ -31,7 +33,7 @@
 
 @keyframes logo_color {
     50% {
-        color: var(--theme-color-primary);
+        color: var(--color-primary);
         transform: scale(1.02);
     }
 }
@@ -42,20 +44,20 @@
 
 @keyframes logo_alt_color {
     50% {
-        color: var(--theme-color-secondary);
+        color: var(--color-secondary);
     }
 }
 
 .toggle {
     display: none;
     margin: 0;
-    color: var(--theme-color-primary);
+    color: var(--color-primary);
     cursor: pointer;
     user-select: none;
 }
 
 .page_links {
-    color: var(--theme-color-secondary);
+    color: var(--color-secondary);
 
     display: flex;
     gap: 1rem;
@@ -67,12 +69,12 @@
 }
 
 .page_links h3:hover {
-    color: var(--theme-color-primary);
+    color: var(--color-primary);
     scale: 1.05;
 }
 
 .social_links {
-    color: var(--theme-color-primary);
+    color: var(--color-primary);
 
     display: flex;
     flex-direction: row;
@@ -81,10 +83,12 @@
 
 .social_links a {
     transition: all 0.3s;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .social_links a:hover {
-    color: var(--theme-color-secondary);
+    color: var(--color-secondary);
     scale: 1.05;
 }
 

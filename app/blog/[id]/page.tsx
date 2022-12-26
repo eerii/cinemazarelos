@@ -1,6 +1,14 @@
 import { getPosts } from "../../(lib)/get_posts"
 
-export default async ({ params } : { params: {id: string} }) => {
+export const generateStaticParams = async () => {
+    const posts = await getPosts()
+
+    return posts.map((post) => ({
+        id: post.id,
+    }))
+}
+
+const BlogPost = async ({ params } : { params: {id: string} }) => {
     const Content = (await import(`./${params.id}.mdx`)).default
     const frontmatter = (await import(`./${params.id}.mdx`)).frontmatter
 
@@ -11,10 +19,4 @@ export default async ({ params } : { params: {id: string} }) => {
     )
 }
 
-export const generateStaticParams = async () => {
-    const posts = await getPosts()
-
-    return posts.map((post) => ({
-        id: post.id,
-    }))
-}
+export default BlogPost

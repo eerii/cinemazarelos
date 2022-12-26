@@ -15,3 +15,19 @@ export const Gazpacho = localFont({
     ],
     variable: "--font-gazpacho",
 })
+
+export const Tisa = localFont({
+    src: [
+        {
+            path: "./fonts/tisa.otf",
+            weight: "400",
+            style: "normal",
+        },
+        {
+            path: "./fonts/tisa_italic.otf",
+            weight: "400",
+            style: "italic",
+        }
+    ],
+    variable: "--font-tisa",
+})

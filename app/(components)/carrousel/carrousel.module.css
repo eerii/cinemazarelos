@@ -1,14 +1,15 @@
 .carrousel {
     display: flex;
     gap: 1rem;
+    margin: 1rem 0;
 
     --poster-height: 300px;
-    --poster-width: calc(var(--poster-height)/var(--sqrt-2) + 2rem + 0.3rem/2)
+    --poster-width: calc(var(--poster-height)/var(--sqrt-2) + 2rem + 0.3rem/2);
 }
 
 .card {
     border-radius: 0.5rem;
-    background-color: var(--theme-color-alt-background);
+    background-color: var(--color-light-background);
     margin: 0;
     padding: 1rem;
     position: relative;
@@ -36,7 +37,7 @@
     padding: 1rem;
     border-radius: inherit;
 
-    background-color: var(--theme-color-background);
+    background-color: var(--color-background);
 }
 
 /* Glow effect */
@@ -61,12 +62,12 @@
 }
 
 .card::before {
-    background: radial-gradient(100vw circle at var(--x) var(--y), #1c234134, transparent 40%);
+    background: radial-gradient(70vw circle at var(--x) var(--y), rgba(var(--theme-lighter-background), 0.15), transparent);
     z-index: 3;
 }
 
 .card::after {
-    background: radial-gradient(70vw circle at var(--x) var(--y), #2c3867, transparent 40%);
+    background: radial-gradient(70vw circle at var(--x) var(--y), var(--color-secondary), transparent 40%);
     z-index: 1;
 }
 /*---*/
@@ -94,7 +95,7 @@
 }
 
 .placeholder {
-    background-color: var(--theme-color-alt-background);
+    background-color: var(--color-light-background);
 }
 
 .informacion {
@@ -137,11 +138,15 @@
     }
 
     .card {
+        height: calc(var(--poster-height) + 9rem);
+    }
+
+    .card_content {
         flex-wrap: wrap;
     }
 
-    .elem {
-        width: calc(100vw - var(--poster-width) - 4rem);
+    .informacion {
+        width: calc(100vw - var(--poster-width) - 7rem);
     }
 
     .sinopsis {

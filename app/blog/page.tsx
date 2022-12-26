@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getPosts, Post } from "../(lib)/get_posts";
 
-export default async () => {
+const BlogPage = async () => {
     const posts = await getPosts();
 
     return (
@@ -16,5 +16,6 @@ export default async () => {
             </ul>
         </main>
     );
-  }
-  
+}
+
+export default BlogPage;
