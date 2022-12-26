@@ -10,7 +10,8 @@ const por_defecto = {
     director: "Director",
     sinopsis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     fecha: "2023-01-01",
-    presentado_por: ["Lorem ipsum"]
+    presentado_por: ["Lorem ipsum", "Sit amet"],
+    cartel_por: "Lorem ipsum"
 }
 
 export type PropsPelicula = {
@@ -28,22 +29,24 @@ const PeliculaCarrousel = ({ pelicula: p }: PropsPelicula) => {
 
     const Info = () => (
         <div>
-            <h3 className={style.elem} style={{marginTop: "0"}}>{pelicula.titulo} ({pelicula.year})</h3>
-            <p className={style.elem}>{pelicula.duracion} min - {pelicula.idioma} - {pelicula.director}</p>
-            <p className={style.elem}>Fecha: {pelicula.fecha}</p>
-            <p className={style.elem}>Presentado por {pelicula.presentado_por.join(", ")}</p>
+            <div className={style.titulo_fecha}>
+                <div>
+                    <h3 className={style.titulo}>{pelicula.titulo}</h3>
+                    <p className={style.subtitulo}>{pelicula.duracion} min - {pelicula.idioma} - {pelicula.year}</p>
+                </div>
+                <p className={style.fecha}>{pelicula.fecha}</p>
+            </div>
+            <div className={style.divisor}/>
+            <p className={style.sinopsis}>{pelicula.sinopsis}</p>
+            <p className={style.creditos}>Presentado por {pelicula.presentado_por.join(", ")}</p>
+            <p className={style.creditos}>Cartel por {pelicula.cartel_por}</p>
         </div>
-    )
-
-    const Sinopsis = () => (
-        <p className={`${style.sinopsis} ${style.elem}`}>{pelicula.sinopsis}</p>
     )
 
     return (
         <div>
             <Poster/>
             <Info/>
-            <Sinopsis/>
         </div>
     )
 }

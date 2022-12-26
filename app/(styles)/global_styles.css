@@ -19,7 +19,7 @@ body {
 main {
     padding: 1rem 0;
     margin: 0;
-    min-height: calc(100vh - 6.5rem);
+    min-height: calc(100vh - 7rem);
 }
 
 h1, h2, h3, h4 {

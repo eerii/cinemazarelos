@@ -14,7 +14,7 @@ const NavBar = () => {
         </div>
         <div className={style.page_links}>
             <Link href="/"><h3>inicio</h3></Link>
-            <Link href="/blog"><h3>blog</h3></Link>
+            <Link href="/"><h3>fanzine</h3></Link>
             <Link href="/about"><h3>sobre nosotres</h3></Link>
         </div>
         <div className={style.social_links}>

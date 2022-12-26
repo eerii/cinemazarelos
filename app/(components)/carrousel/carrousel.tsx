@@ -4,7 +4,7 @@ import Estado from "./estado"
 
 const Carrousel = async () => {
     const peliculas = await ListaPeliculas({
-        propiedades: "id, titulo, year, director, duracion, fecha, presentado_por, idioma, sinopsis, sinopsis_es",
+        propiedades: "id, titulo, year, director, duracion, fecha, presentado_por, idioma, sinopsis, cartel_por",
         n: 3,
         poster: true, 
         orden: "fecha", 

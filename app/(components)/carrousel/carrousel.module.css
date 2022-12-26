@@ -91,7 +91,7 @@
 }
 
 .card:hover .poster {
-    transform: scale(1.02);
+    transform: scale(1.01);
 }
 
 .placeholder {
@@ -99,8 +99,10 @@
 }
 
 .informacion {
-    max-height: var(--poster-height);
-    overflow: hidden;
+    height: var(--poster-height);
+    
+    display: flex;
+    flex-direction: column;
 }
 
 .inactiva .informacion {
@@ -118,7 +120,35 @@
 }
 
 .elem {
-    margin: 1rem 0;
+    margin: 0.5rem 0 0 0;
+}
+
+.titulo_fecha {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: top;
+}
+
+.fecha {
+    font-size: 1.2rem;
+    margin: 0;
+    color: var(--color-secondary);
+}
+
+.titulo {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.subtitulo {
+    font-size: 0.8rem;
+    margin: 0;
+    color: var(--color-lighter-background);
+}
+
+.divisor {
+    flex-grow: 1;
 }
 
 .sinopsis {
@@ -130,6 +160,13 @@
     -webkit-box-orient: vertical;
     line-clamp: 3;
     -webkit-line-clamp: 3;
+
+    margin-bottom: 1rem;
+}
+
+.creditos {
+    margin: 0;
+    color: var(--color-secondary);
 }
 
 @media screen and (max-width: 768px) {
@@ -137,16 +174,12 @@
         --poster-height: 200px;
     }
 
-    .card {
-        height: calc(var(--poster-height) + 9rem);
-    }
-
     .card_content {
         flex-wrap: wrap;
     }
 
     .informacion {
-        width: calc(100vw - var(--poster-width) - 7rem);
+        width: calc(100vw - var(--poster-width) - 3rem);
     }
 
     .sinopsis {
