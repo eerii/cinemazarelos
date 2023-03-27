@@ -22,8 +22,8 @@ const PeliculaCarrousel = ({ pelicula: p }: PropsPelicula) => {
     const pelicula = p ? p : por_defecto
 
     const Poster = () => (
-        "poster" in pelicula ?
-        <Image src={pelicula.poster.data?.publicUrl} alt={pelicula.titulo} width={300/Math.SQRT2} height={300} className={style.poster}/> :
+        "poster" in pelicula && "data" in pelicula.poster ?
+        <Image src={pelicula.poster.data?.publicUrl} alt={pelicula.titulo} width={301/Math.SQRT2} height={300} className={style.poster}/> :
         <div className={`${style.poster} ${style.placeholder}`}/>
     )
 
