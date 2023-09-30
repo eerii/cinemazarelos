@@ -1,4 +1,5 @@
-import localFont from "@next/font/local"
+import localFont from "next/font/local"
+import { Atkinson_Hyperlegible } from "next/font/google"
 
 export const Gazpacho = localFont({
     src: [
@@ -16,18 +17,8 @@ export const Gazpacho = localFont({
     variable: "--font-gazpacho",
 })
 
-export const Tisa = localFont({
-    src: [
-        {
-            path: "./fonts/tisa.otf",
-            weight: "400",
-            style: "normal",
-        },
-        {
-            path: "./fonts/tisa_italic.otf",
-            weight: "400",
-            style: "italic",
-        }
-    ],
-    variable: "--font-tisa",
+export const AtkinsonHyperlegible = Atkinson_Hyperlegible({
+    subsets: ["latin"],
+    weight: "400",
+    variable: "--font-athy"
 })

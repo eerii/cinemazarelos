@@ -1,4 +1,4 @@
-import { Gazpacho, Tisa } from "./(styles)/font_styles"
+import { Gazpacho, AtkinsonHyperlegible } from "./(styles)/font_styles"
 import "./(styles)/themes.css"
 import "./(styles)/global_styles.css"
 
@@ -8,7 +8,7 @@ import Analytics from "./(lib)/analytics"
 
 const Layout = ({children} : {children: React.ReactNode}) => {
     return (
-        <html lang="es" className={`${Gazpacho.variable} ${Tisa.variable}`}>
+        <html lang="es" className={`${Gazpacho.variable} ${AtkinsonHyperlegible.variable}`}>
             <body>
                 <Navigation/>
                 {children}

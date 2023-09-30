@@ -8,3 +8,13 @@
     flex-wrap: wrap;
     margin: 2rem 0;
 }
+
+.calendario_reviews>* {
+    flex: 1
+}
+
+@media screen and (max-width: 768px) {
+    .calendario_reviews {
+        flex-direction: column
+    }
+}

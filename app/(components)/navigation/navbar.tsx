@@ -13,9 +13,9 @@ const NavBar = () => {
             <h3 className={style.toggle}>menú</h3>
         </div>
         <div className={style.page_links}>
-            <Link href="/"><h3>inicio</h3></Link>
-            <Link href="/"><h3>fanzine</h3></Link>
-            <Link href="/about"><h3>sobre nosotres</h3></Link>
+            <Link href="/"><h3>Inicio</h3></Link>
+            <Link href="/"><h3>Fanzine</h3></Link>
+            <Link href="/about"><h3>Sobre nosotres</h3></Link>
         </div>
         <div className={style.social_links}>
             <a href="https://www.instagram.com/cinemazarelos_usc" target="_blank" rel="noreferrer noopener" aria-label="Instagram"><InstagramIcon/></a>
