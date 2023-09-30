@@ -1,26 +1,28 @@
 import SupabaseClient from "./supabase"
-import { DatosPelicula } from "../tmdb"
+// import { DatosPelicula } from "../tmdb"
 
 export const revalidate = 21600 // Cada 6 horas
 
-const PeliculasSupabase = async ({ propiedades, n = 1, poster = false, orden = "id", asc = true }: { propiedades: string, n?: number, poster?: boolean, orden?: string, asc?: boolean }) => {
-    if (!SupabaseClient) return Array(n).fill(null)
+const PeliculasSupabase = async ({ propiedades, n = -1, poster = false, orden = "id", asc = true, future = false }: { propiedades: string, n?: number, poster?: boolean, orden?: string, asc?: boolean, future?: boolean }) => {
+    if (!SupabaseClient) return Array(n > 0 ? n : 0).fill(null)
     
     // Obtener las películas de la base de datos
     const { data, error } = await SupabaseClient
         .from("peliculas")
         .select(propiedades + (poster ? ", poster" : ""))
         .order(orden, { ascending: asc })
-        .limit(n)
+        .limit(n > 0 ? n : 1000)
+        .gte("fecha", future ? (new Date()).toISOString() : (new Date(-1000000000)).toISOString())
 
     if (error) {
-        console.error("Error al obtener las peliculas: ", error)
+        console.error("Error al obtener las peliculas de la base de datos: ", error)
         return Array(n).fill(null)
     }
 
     // Completar la información que no se encuentra con la API de TMDB
-    let peliculas = await Promise.all(data.map(async (pelicula : any) => {
-        if (!pelicula?.sinopsis || !pelicula?.sinopsis_es || !pelicula?.idioma || !pelicula?.duracion) {
+    let peliculas = data
+    /*let peliculas = await Promise.all(data.map(async (pelicula : any) => {
+        if (pelicula && (!pelicula.sinopsis || !pelicula.sinopsis_es || !pelicula.idioma || !pelicula.duracion)) {
             const data = await DatosPelicula({ titulo: pelicula.titulo, year: pelicula.year })
             if (data) {
                 const actualizarPelicula = async (campo: string) => {
@@ -46,7 +48,7 @@ const PeliculasSupabase = async ({ propiedades, n = 1, poster = false, orden = "
             }
         }
         return pelicula
-    }))
+    }))*/
 
     // Obtener los posters de la base de datos
     if (poster) {

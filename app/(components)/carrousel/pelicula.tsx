@@ -22,7 +22,7 @@ const PeliculaCarrousel = ({ pelicula: p }: PropsPelicula) => {
     const pelicula = p ? p : por_defecto
 
     const Poster = () => (
-        "poster" in pelicula && "data" in pelicula.poster ?
+        pelicula?.poster?.data?.publicUrl ?
         <Image src={pelicula.poster.data?.publicUrl} alt={pelicula.titulo} width={301/Math.SQRT2} height={300} className={style.poster}/> :
         <div className={`${style.poster} ${style.placeholder}`}/>
     )
@@ -38,7 +38,7 @@ const PeliculaCarrousel = ({ pelicula: p }: PropsPelicula) => {
             </div>
             <div className={style.divisor}/>
             <p className={style.sinopsis}>{pelicula.sinopsis}</p>
-            <p className={style.creditos}>Presentado por {pelicula.presentado_por.join(", ")}</p>
+            <p className={style.creditos}>Presentado por {pelicula?.presentado_por?.join(", ")}</p>
             <p className={style.creditos}>Cartel por {pelicula.cartel_por}</p>
         </div>
     )

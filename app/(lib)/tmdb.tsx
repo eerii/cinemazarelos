@@ -18,6 +18,9 @@ const idiomas = {
 }
 
 export const DatosPelicula = async ({ titulo, year }: { titulo: string, year: number }) : Promise<PeliculaTMDB | undefined> => {
+    // TODO: Mirar a ver se arranxo isto
+    return undefined;
+
     const init = {
         method: "GET",
         headers: {
@@ -30,7 +33,7 @@ export const DatosPelicula = async ({ titulo, year }: { titulo: string, year: nu
     const req = await fetch( `https://api.themoviedb.org/3/search/movie?query=${encodeURI(titulo)}&year=${year}&page=1&language=es-ES`, init )
 
     if (!req.ok) {
-        console.error("Error al obtener las peliculas")
+        console.error("Error al obtener las peliculas de TMDB")
         return undefined
     }
 
