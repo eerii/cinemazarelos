@@ -1,0 +1,67 @@
+.title {
+    margin: 0 0 1rem 0;
+}
+
+.card {
+    width: 100%;
+    min-height: 4rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
+
+    display: flex;
+    gap: 1rem;
+
+    border: 1px solid var(--color-light-background);
+    background-color: rgba(var(--theme-light-background), 0.2);
+    border-radius: 0.3em;
+    transition: transform 0.2s cubic-bezier(0.12, 0.23, 0.44, 1.54),
+                background-color 0.35s,
+                border-color 0.35s;
+}
+
+.card:hover, .card:has(input:focus){
+    cursor: pointer;
+    transform: scale(1.02);
+    background-color: rgba(var(--theme-light-background), 0.5);
+    border-color: var(--color-primary);
+}
+
+.card>img {
+    border-radius: 0.3em;
+}
+
+.card>.sep {
+    flex-grow: 1;
+}
+
+.card>.content {
+    max-width: 28rem;
+}
+
+.card p {
+    margin-top: 0px;
+}
+
+.card>input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #00000000;
+    color: var(--color-secondary);
+}
+
+.card>button {
+    border: none;
+    outline: none;
+    border-radius: 0.3em;
+    background-color: var(--color-primary);
+
+    transition: transform 0.2s cubic-bezier(0.12, 0.23, 0.44, 1.54),
+                background-color 0.35s,
+                border-color 0.35s;
+}
+
+.card>button:hover {
+    transform: scale(1.05); 
+    background-color: var(--color-secondary);
+}

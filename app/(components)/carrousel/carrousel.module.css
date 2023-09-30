@@ -2,6 +2,7 @@
     display: flex;
     gap: 1rem;
     margin: 1rem 0;
+    overflow: hidden;
 
     --poster-height: 300px;
     --poster-width: calc(var(--poster-height)/var(--sqrt-2) + 2rem + 0.3rem/2);
