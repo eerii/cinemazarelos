@@ -6,7 +6,6 @@ import style from "./(styles)/main.module.css"
 
 const Main = () => 
     <main>
-        {/* @ts-expect-error Server Component */}
         <Carrousel/>
         <div className={style.calendario_reviews}>
             <Calendario/>
