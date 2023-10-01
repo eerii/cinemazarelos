@@ -13,6 +13,18 @@
     flex: 1
 }
 
+.title {
+    margin: 0 0 1rem 0;
+}
+
+.sep {
+    flex-grow: 1;
+}
+
+.content {
+    max-width: 28rem;
+}
+
 @media screen and (max-width: 768px) {
     .calendario_reviews {
         flex-direction: column

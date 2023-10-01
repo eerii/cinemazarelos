@@ -1,6 +1,7 @@
 import ListaPeliculas from "../../(lib)/supabase/peliculas"
 import Pelicula from "./pelicula"
 
+import Card from "../card/card"
 import style from "./calendario.module.css"
 
 const Calendario = async () => {
@@ -18,9 +19,9 @@ const Calendario = async () => {
             {
                 peliculas?.length ?
                     peliculas.sort((a, b) => a.fecha < b.fecha ? -1 : 1).map((pelicula: any, index) => <Pelicula key={index} pelicula={pelicula}/>) :
-                    <div className={style.dia}>
-                        <p className={style.titulo}>Non hai próximas sesións</p>
-                    </div>
+                    <Card>
+                        <h3 className={style.titulo_pelicula}>Non hai próximas sesións</h3>
+                    </Card>
             }
         </div>
     </div>)

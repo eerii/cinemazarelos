@@ -1,3 +1,4 @@
+import Card from "../card/card"
 import style from "./calendario.module.css"
 
 const PeliculaCalendario = (p: any) => {
@@ -7,13 +8,13 @@ const PeliculaCalendario = (p: any) => {
     let mes = fecha.toLocaleString("gl", { month: "short" }).replace(".", "")
 
     return (
-        <div className={style.dia}>
+        <Card>
             <div className={style.fecha}>
                 <p className={style.fecha_dia}>{dia}</p>
                 <p className={style.fecha_mes}>{mes}</p>
             </div>
-            <p className={style.titulo}>{pelicula.titulo}</p>
-        </div>
+            <h3 className={style.titulo_pelicula}>{pelicula.titulo}</h3>
+        </Card>
     )
 }
 

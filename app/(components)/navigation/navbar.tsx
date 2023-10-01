@@ -10,7 +10,7 @@ const NavBar = () => {
         <EstadoNavBar>
         <div className={style.mobile_wrapper}>
             <Link href="/"><h1 className={style.logo}><span className={style.logo_alt}>CineMa</span>zarelos</h1></Link>
-            <h3 className={style.toggle}>menú</h3>
+            <h3 className={style.toggle}>Menú</h3>
         </div>
         <div className={style.page_links}>
             <Link href="/"><h3>Inicio</h3></Link>
