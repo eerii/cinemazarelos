@@ -1,0 +1,9 @@
+[package]
+name = "cinemazarelos"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = "0.7"
+dotenv = "0.15"
+tokio = { version = "1.35", features = ["full"] }
