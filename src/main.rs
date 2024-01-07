@@ -2,19 +2,15 @@ use std::env;
 
 use axum::{Router, routing::get, response::Html};
 use dotenv::dotenv;
-use tokio::net::TcpListener;
+use shuttle_axum::ShuttleAxum;
 
-#[tokio::main]
-async fn main() {
+#[shuttle_runtime::main]
+async fn main() -> ShuttleAxum {
     dotenv().ok(); 
 
     let app = Router::new().route("/", get(handler));
 
-    let listener = TcpListener::bind("127.0.0.1:3000")
-        .await
-        .unwrap();
-    println!("running on {}", listener.local_addr().unwrap());
-    axum::serve(listener, app).await.unwrap();
+    Ok(app.into())
 }
 
 async fn handler() -> Html<String> {
