@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>cinemazarelos</title>
+
+        <script src="https://unpkg.com/htmx.org/dist/htmx.min.js"></script>
+        <script src="https://unpkg.com/htmx.org/dist/ext/client-side-templates.js"></script>
+        <script src="https://mozilla.github.io/nunjucks/files/nunjucks.min.js"></script>
+    </head>
+    <body>
+        <h1>Hi there!</h1>
+        <p>This is a simple page uwu</p>
+        <div hx-ext="client-side-templates">
+            <button
+                hx-get="https://jsonplaceholder.typicode.com/todos/1"
+                hx-swap="innerHTML"
+                hx-target="#content"
+                nunjucks-template="foo"
+            >
+                Click Me
+            </button>
+
+            <p id="content">Start</p>
+
+            <template id="foo">
+                <h3>{{ title }}</h3>
+                <p>User: {{ userId }}</p>
+                <p>Completed: {{ completed }}</p>
+            </template>
+        </div>
+    </body>
+</html>
