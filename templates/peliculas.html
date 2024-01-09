@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+<!-- -->
+
+{% block content %}
+<h1>Peliculas</h1>
+
+<ul>
+    {% for pelicula in peliculas %}
+    <li>
+        {{pelicula.titulo}} ({{pelicula.year.unwrap_or(2999)}}) de
+        {{pelicula.director}}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

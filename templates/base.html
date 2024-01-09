@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="gl">
+    <head>
+        <title>Cinemazarelos</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+
+        <script src="https://unpkg.com/htmx.org/dist/htmx.min.js"></script>
+        <script src="/static/inline_css.js"></script>
+
+        <link rel="stylesheet" href="/static/modern_normalize.css" />
+        <link rel="stylesheet" href="/static/style.css" />
+
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <!-- Barra de navegacion -->
+        <div>
+            <style>
+                this {
+                    background-color: #99aaff;
+                    position: fixed;
+                    top: 0;
+                    width: 100%;
+                    height: 2rem;
+                }
+            </style>
+            <a href="/">Inicio</a>
+            <a href="/about">Sobre nosotres</a>
+            <a href="/peliculas">Películas</a>
+            <a href="/">Redes</a>
+        </div>
+
+        <!-- Contido -->
+        <div>
+            <style>
+                this {
+                    margin-top: 2rem;
+                }
+            </style>
+            {% block content %}
+            <h1>Nada que ver aquí 🤫</h1>
+            {% endblock %}
+        </div>
+    </body>
+</html>
