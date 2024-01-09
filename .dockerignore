@@ -1,3 +1,4 @@
 .git
 .envrc
+.cache
 /target

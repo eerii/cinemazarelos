@@ -1,3 +1,4 @@
 .envrc
 .sqlx
+.cache
 /target
