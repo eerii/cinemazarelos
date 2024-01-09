@@ -17,5 +17,6 @@ RUN cargo build --release --bin cinemazarelos
 # Runner
 FROM debian:stable-slim AS runner
 WORKDIR /app
-COPY --from=builder /app/target/release/cinemazarelos /usr/local/bin
-ENTRYPOINT ["/usr/local/bin/cinemazarelos"]
+COPY --from=builder /app/target/release/cinemazarelos /app/
+COPY --from=builder /app/static /app/static
+CMD ./cinemazarelos

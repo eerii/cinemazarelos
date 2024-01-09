@@ -3,20 +3,20 @@ use std::{
     time::{Duration, SystemTime},
 };
 
-use chrono::{DateTime, Local};
+use serde::{Deserialize, Serialize};
 use sqlx::{
     postgres::PgPoolOptions,
     query_as,
     types::{time::Date, Uuid},
     Pool, Postgres,
 };
-use tracing::{debug, info};
+use tracing::{debug, warn};
 
 const CACHE_DURATION: Duration = Duration::from_secs(6 * 60 * 60);
 
 // Estructuras
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Pelicula {
     // TODO: Reordear tabla
     pub id: Option<i64>,
@@ -36,7 +36,7 @@ pub struct Pelicula {
 
 // Caché de datos
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 struct CacheLine<T: Default> {
     valid_until: SystemTime,
     data: T,
@@ -54,6 +54,7 @@ impl<T: Default> CacheLine<T> {
         if self.valid_until > SystemTime::now() {
             Some(&self.data)
         } else {
+            debug!("A caché expirou ou non existe");
             None
         }
     }
@@ -68,9 +69,37 @@ impl<T: Default> Default for CacheLine<T> {
     }
 }
 
-#[derive(Debug, Default, Clone)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 struct Cache {
     peliculas: CacheLine<Vec<Pelicula>>,
+}
+
+impl Cache {
+    fn write(&mut self, f: impl FnOnce(&mut Self)) {
+        f(self);
+        if let Ok(data) = bitcode::serialize(&self) {
+            if std::fs::write(".cache", data).is_ok() {
+                debug!("Gardouse o caché da base de datos");
+            } else {
+                warn!("Error al escribir en .cache");
+            }
+        }
+    }
+}
+
+impl Default for Cache {
+    fn default() -> Self {
+        if let Ok(data) = std::fs::read(".cache") {
+            if let Ok(cache) = bitcode::deserialize(&data) {
+                debug!("Cargouse o caché dende o disco");
+                return cache;
+            }
+        }
+
+        Cache {
+            peliculas: CacheLine::default(),
+        }
+    }
 }
 
 // Conexión a base de datos
@@ -103,7 +132,7 @@ impl RepoPeliculas for Conexion {
 
     async fn list(&mut self) -> Vec<Pelicula> {
         if let Some(cache) = self.cache.peliculas.get().cloned() {
-            debug!("Usando cache para a lista de películas");
+            debug!("Usando caché para a lista de películas");
             return cache;
         }
 
@@ -112,12 +141,8 @@ impl RepoPeliculas for Conexion {
             .await
             .expect("Fallo obtendo as películas");
 
-        self.cache.peliculas = CacheLine::new(CACHE_DURATION, peliculas);
-        let fecha: DateTime<Local> = self.cache.peliculas.valid_until.into();
-        info!(
-            "Cache creado para a lista de películas, válido ata {}",
-            fecha.format("%Y-%m-%d %H:%M:%S")
-        );
+        self.cache
+            .write(|cache| cache.peliculas = CacheLine::new(CACHE_DURATION, peliculas));
 
         self.cache.peliculas.get().cloned().unwrap()
     }
