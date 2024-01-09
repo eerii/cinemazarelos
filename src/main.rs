@@ -1,34 +1,22 @@
-use std::env;
-
-use askama::Template;
-use axum::{Router, routing::get, extract::Path, response::Html};
-use dotenv::dotenv;
+use axum::{routing::get, Router};
+use cinemazarelos::{
+    routes::{
+        home::{hello, home},
+        peliculas::peliculas,
+    },
+    SharedState,
+};
 use shuttle_axum::ShuttleAxum;
+use tower_http::services::ServeDir;
 
 #[shuttle_runtime::main]
 async fn main() -> ShuttleAxum {
-    dotenv().ok(); 
-
-    let mut router = Router::new().route("/", get(home)).route("/:name", get(hello));
-
-    if cfg!(debug_assertions) {
-        router = router.layer(tower_livereload::LiveReloadLayer::new());
-    }
+    let router = Router::new()
+        .route("/", get(home))
+        .route("/peliculas", get(peliculas))
+        .route("/hello/:name", get(hello))
+        .nest_service("/static", ServeDir::new("static/"))
+        .with_state(SharedState::default());
 
     Ok(router.into())
-}
-
-async fn home() -> Html<&'static str> {
-    Html("<h1>Hey there c:</h1>")
-}
-
-#[derive(Template)]
-#[template(path = "index.html")]
-struct HelloTemplate {
-    name: String,
-    other: String,
-}
-
-async fn hello(Path(name): Path<String>) -> HelloTemplate {
-    HelloTemplate { name, other: env::var("PRUEBA").unwrap_or("Default".into()) }
 }

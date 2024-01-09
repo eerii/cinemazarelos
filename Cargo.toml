@@ -3,12 +3,19 @@ name = "cinemazarelos"
 version = "0.1.0"
 edition = "2021"
 
+[profile.dev.package.sqlx-macros]
+opt-level = 3
+
 [dependencies]
 askama = { version = "0.12", features = ["with-axum"] }
 askama_axum = "0.4"
 axum = "0.7"
-dotenv = "0.15"
+chrono = "0.4"
+dotenvy_macro = "0.15"
 shuttle-axum = { version = "0.35", default-features = false, features = ["axum-0-7"] }
 shuttle-runtime = "0.35"
+sqlx = { version = "0.7", features = [ "runtime-tokio", "tls-native-tls", "postgres", "time", "uuid" ] }
 tokio = { version = "1.35", features = ["full"] }
-tower-livereload = "0.9"
+tower = "0.4"
+tower-http = { version = "0.5", features = ["fs"] }
+tracing = "0.1"
