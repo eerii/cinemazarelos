@@ -1,7 +1,15 @@
-use std::{time::{Duration, SystemTime}, env};
+use std::{
+    env,
+    time::{Duration, SystemTime},
+};
 
 use chrono::{DateTime, Local};
-use sqlx::{postgres::PgPoolOptions, query_as, Pool, Postgres, types::{time::Date, Uuid}};
+use sqlx::{
+    postgres::PgPoolOptions,
+    query_as,
+    types::{time::Date, Uuid},
+    Pool, Postgres,
+};
 use tracing::{debug, info};
 
 const CACHE_DURATION: Duration = Duration::from_secs(6 * 60 * 60);
@@ -99,13 +107,10 @@ impl RepoPeliculas for Conexion {
             return cache;
         }
 
-        let peliculas = query_as!(
-            Pelicula,
-            "SELECT * FROM peliculas"
-        )
-        .fetch_all(self.get().await)
-        .await
-        .expect("Fallo obtendo as películas");
+        let peliculas = query_as!(Pelicula, "SELECT * FROM peliculas")
+            .fetch_all(self.get().await)
+            .await
+            .expect("Fallo obtendo as películas");
 
         self.cache.peliculas = CacheLine::new(CACHE_DURATION, peliculas);
         let fecha: DateTime<Local> = self.cache.peliculas.valid_until.into();

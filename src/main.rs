@@ -1,9 +1,6 @@
-use axum::{routing::get, Router};
+use axum::{http::Request, routing::get, Router};
 use cinemazarelos::{
-    routes::{
-        home::{hello, home},
-        peliculas::peliculas,
-    },
+    routes::{inicio::inicio, peliculas::peliculas},
     SharedState,
 };
 use tokio::net::TcpListener;
@@ -12,15 +9,23 @@ use tower_http::services::ServeDir;
 #[tokio::main]
 async fn main() {
     let app = Router::new()
-        .route("/", get(home))
+        .route("/", get(inicio))
         .route("/peliculas", get(peliculas))
-        .route("/hello/:name", get(hello))
         .nest_service("/static", ServeDir::new("static/"))
         .with_state(SharedState::default());
 
-    let listener = TcpListener::bind("0.0.0.0:8080")
-        .await
-        .unwrap();
-    println!("Servidor activo en http://{}", listener.local_addr().unwrap());
+    #[cfg(debug_assertions)]
+    let app = {
+        fn not_htmx<T>(req: &Request<T>) -> bool {
+            !req.headers().contains_key("hx-request")
+        }
+        app.layer(tower_livereload::LiveReloadLayer::new().request_predicate(not_htmx))
+    };
+
+    let listener = TcpListener::bind("0.0.0.0:8080").await.unwrap();
+    println!(
+        "Servidor activo en http://{}",
+        listener.local_addr().unwrap()
+    );
     axum::serve(listener, app).await.unwrap();
 }
