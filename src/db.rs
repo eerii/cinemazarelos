@@ -1,7 +1,6 @@
-use std::time::{Duration, SystemTime};
+use std::{time::{Duration, SystemTime}, env};
 
 use chrono::{DateTime, Local};
-use dotenvy_macro::dotenv;
 use sqlx::{postgres::PgPoolOptions, query_as, Pool, Postgres, types::{time::Date, Uuid}};
 use tracing::{debug, info};
 
@@ -86,7 +85,7 @@ impl RepoPeliculas for Conexion {
         if self.pool.is_none() {
             self.pool = Some(
                 PgPoolOptions::new()
-                    .connect(dotenv!("DATABASE_URL"))
+                    .connect(&env::var("DATABASE_URL").expect("DATABASE_URL non especificada"))
                     .await
                     .expect("Fallo ó conectar ca base de datos"),
             );
