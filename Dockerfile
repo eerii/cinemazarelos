@@ -1,4 +1,4 @@
-FROM lukemathwalker/cargo-chef:latest AS chef
+FROM lukemathwalker/cargo-chef:latest-rust-slim AS chef
 WORKDIR /app
 
 # Planner
@@ -9,9 +9,10 @@ RUN cargo chef prepare --recipe-path recipe.json
 # Builder
 FROM chef AS builder 
 COPY --from=planner /app/recipe.json recipe.json
+RUN rustup toolchain install nightly
 RUN cargo +nightly chef cook --release --recipe-path recipe.json
 COPY . .
-RUN cargo build --release --bin app
+RUN cargo build --release --bin cinemazarelos
 
 # Runner
 FROM debian:stable-slim AS runner
