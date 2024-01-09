@@ -6,17 +6,21 @@ use cinemazarelos::{
     },
     SharedState,
 };
-use shuttle_axum::ShuttleAxum;
+use tokio::net::TcpListener;
 use tower_http::services::ServeDir;
 
-#[shuttle_runtime::main]
-async fn main() -> ShuttleAxum {
-    let router = Router::new()
+#[tokio::main]
+async fn main() {
+    let app = Router::new()
         .route("/", get(home))
         .route("/peliculas", get(peliculas))
         .route("/hello/:name", get(hello))
         .nest_service("/static", ServeDir::new("static/"))
         .with_state(SharedState::default());
 
-    Ok(router.into())
+    let listener = TcpListener::bind("0.0.0.0:8080")
+        .await
+        .unwrap();
+    println!("Servidor activo en http://{}", listener.local_addr().unwrap());
+    axum::serve(listener, app).await.unwrap();
 }
