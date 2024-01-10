@@ -5,6 +5,25 @@
 {% block content %}
 <!-- Películas -->
 
+<div>
+    <style>
+        this {
+            background: radial-gradient(
+                64rem circle at 80vw -16rem,
+                var(--bg-light),
+                transparent
+            );
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 40rem;
+            width: 100%;
+            z-index: -1;
+        }
+    </style>
+</div>
+
 <div hx-get="/api/peliculas" hx-trigger="load">
     <p class="htmx-indicator">Cargando...</p>
 </div>
@@ -13,8 +32,24 @@
 
 <div>
     <style>
-        this { display: flex; }
-        this div { flex: 50%; }
+        this { 
+            display: flex;
+            gap: calc(var(--spacing) * 2);
+        }
+
+        this div { 
+            flex: 50%;
+        }
+
+        /* TODO: Move to box class */
+        this div div, this div input {
+            width: 100%;
+            height: 3rem;
+            background-color: var(--bg-light);
+            border-radius: var(--radius);
+            margin-bottom: 0.5rem;
+        }
+
         @media sm- {
             this { flex-direction: column; }
         }
@@ -26,20 +61,16 @@
         <h2>Calendario</h2>
         <div>
             <style>
-                this div {
-                    width: 100%;
-                    height: 2rem;
-                    background-color: #99aaff;
-                    margin-bottom: 0.5rem;
-                }
+                
             </style>
 
-            <div>a</div>
-            <div>b</div>
+            <div></div>
+            <div></div>
         </div>
     </div>
     <div>
         <h2>Fanzine</h2>
+        <div style="height: 10rem;"></div>
     </div>
 </div>
 

@@ -1,32 +1,91 @@
 /* Baseado en https://github.com/frontaid/natural-selection */
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Universal
+Tipografias
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+/* Texto */
+
+@font-face {
+    font-family: "Inter";
+    src: url("/assets/fonts/inter.ttf") format("truetype-variations");
+    font-weight: 100 900;
+}
+
+@font-face {
+    font-family: "Mabry";
+    src: url("/assets/fonts/mabry.ttf") format("truetype-variations");
+    font-weight: 100 900;
+}
+
+/* Titulos */
+
+@font-face {
+    font-family: "Gazpacho";
+    src: url("/assets/fonts/gzpch_bold.ttf") format("truetype");
+    font-weight: 800;
+}
+
+/* Universal */
 
 *,
 *::before,
 *::after {
 }
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Root
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* Raiz do documento */
+/* Aqui definimos todolas variables globais */
 
 :root {
-}
-html {
-}
-body {
-    margin-top: 2rem; /* Barra de navegacion */
-    min-height: calc(100vh - 2rem);
-    display: flex;
-    flex-direction: column;
+    --font-text: "Mabry";
+    --font-title: "Gazpacho";
+
+    --bg: #0f1119;
+    --fg: #f5dc9a;
+    --accent: #dc87bd;
+    --ok: #639464;
+    --error: #d1525e;
+
+    --bg-base: #4557a1;
+    --bg-lighter: color-mix(in oklab, var(--bg-base) 20%, var(--bg));
+    --bg-light: color-mix(in oklab, var(--bg-base) 10%, var(--bg));
+    --bg-dark: color-mix(in oklab, black 15%, var(--bg));
+    --bg-darker: color-mix(in oklab, black 25%, var(--bg));
+
+    --nav-height: 4rem;
+    --spacing: 1rem;
+    --radius: 0.5rem;
+
+    font-family: var(--font-text);
+
+    color: var(--fg);
+    accent-color: var(--accent);
+    scroll-behavior: smooth;
 }
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Contido
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+:root[accessible="true"] {
+    --font-text: "Inter";
+    --font-title: "Inter";
+
+    --bg: white;
+    --fg: black;
+    --accent: black;
+
+    --spacing: 1.5rem;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: var(--nav-height);
+    padding: 0 calc(var(--spacing) * 2);
+    min-height: calc(100vh - var(--nav-height));
+
+    background-color: var(--bg);
+}
+
+/* Titulos */
 
 h1,
 h2,
@@ -34,6 +93,9 @@ h3,
 h4,
 h5,
 h6 {
+    font-family: var(--font-title);
+    color: var(--accent);
+    padding: var(--spacing) 0;
 }
 h1 {
 }
@@ -48,8 +110,7 @@ h5 {
 h6 {
 }
 
-header {
-}
+/* Navegacion */
 
 nav {
 }
@@ -66,6 +127,8 @@ nav a:hover {
 }
 nav a:active {
 }
+
+/* Seccions */
 
 main {
 }
@@ -89,11 +152,8 @@ footer {
 address {
 }
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Bloques de texto
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* Bloques de texto */
 
-/* Xeral */
 p,
 ol,
 ul,
@@ -103,8 +163,6 @@ figure,
 hr,
 dl {
 }
-
-/* Especifico */
 
 p {
 }
@@ -151,9 +209,7 @@ dt {
 dd {
 }
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Texto en linha
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* Enlaces */
 
 a {
 }
@@ -163,6 +219,8 @@ a:hover {
 }
 a:active {
 }
+
+/* Outro texto */
 
 strong {
 }
@@ -219,18 +277,12 @@ data {
 time {
 }
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Edicion
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
 del {
 }
 ins {
 }
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Contido embedido
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* Contido embedido */
 
 img {
 }
@@ -248,9 +300,7 @@ object {
 noscript {
 }
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Taboas
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* Taboas */
 
 table {
 }
@@ -271,9 +321,7 @@ th {
 td {
 }
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Formularios
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* Formularios */
 
 fieldset {
 }
@@ -293,7 +341,6 @@ label {
 :focus::placeholder {
 }
 
-/* Xeral */
 input,
 textarea,
 select,
@@ -315,7 +362,6 @@ input[type="week"],
 input[type="time"] {
 }
 
-/* Especifico */
 textarea {
 }
 input[type="text"] {
@@ -343,7 +389,6 @@ input[type="week"] {
 input[type="time"] {
 }
 
-/* Checkmarks */
 input[type="checkbox"],
 input[type="radio"] {
 }
@@ -359,7 +404,6 @@ input[type="radio"] {
 input[type="radio"]:checked {
 }
 
-/* Outras entradas */
 input[type="file"] {
 }
 input[type="color"] {
@@ -378,6 +422,17 @@ option:checked {
 datalist {
 }
 
+/* Forumalarios invalidos e que foron interactuados */
+form.interacted:invalid {
+}
+form.interacted :invalid,
+form .touched:invalid {
+}
+:user-invalid {
+}
+:-moz-ui-invalid {
+}
+
 /* Botons */
 button,
 input[type="submit"] {
@@ -390,18 +445,7 @@ button.secondary {
 button.secondary:disabled {
 }
 
-/* Forumalarios invalidos e que foron interactuados */
-form.interacted:invalid {
-}
-form.interacted :invalid,
-form .touched:invalid {
-}
-:user-invalid {
-}
-:-moz-ui-invalid {
-}
-
-/* Outros */
+/* Outros elementos de formularios */
 output {
 }
 
@@ -410,9 +454,7 @@ progress {
 meter {
 }
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Elementos interactivos
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* Elementos interactivos */
 
 details {
 }
@@ -439,9 +481,7 @@ dialog::backdrop {
 [inert] * {
 }
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Media queries
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* Media queries */
 
 @media (prefers-reduced-motion: reduce) {
 }

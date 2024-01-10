@@ -1,7 +1,5 @@
 use axum::http::Request;
-use cinemazarelos::{
-    init_tracing, routes::router,
-};
+use cinemazarelos::{init_tracing, routes::router};
 use tokio::net::TcpListener;
 use tower_http::services::ServeDir;
 use tracing::info;
@@ -12,8 +10,7 @@ async fn main() {
     init_tracing();
 
     // Rutas da aplicación
-    let app = router()
-        .nest_service("/assets", ServeDir::new("assets/"));
+    let app = router().nest_service("/assets", ServeDir::new("assets/"));
 
     // Ferramentas para debug
     #[cfg(debug_assertions)]

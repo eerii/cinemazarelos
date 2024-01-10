@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="gl">
     <head>
-        <title>{% block title %}Cinemazarelos{% endblock %}</title>
+        <!-- Meta -->
+        <title>{% block title %}CineMazarelos{% endblock %}</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <meta
@@ -9,12 +10,17 @@
             content="A páxina web do ciclo de cine da Facultade de Filosofía da USC. Infórmate sobre as próximas sesións e descubre todas as novidades."
         />
 
+        <!-- Scripts -->
+        <!-- Inclúe htmx, hyperscript e inline css -->
         <script src="https://unpkg.com/htmx.org/dist/htmx.min.js"></script>
+        <script src="https://unpkg.com/hyperscript.org"></script>
         <script src="/assets/inline_css.js"></script>
 
+        <!-- Estilo e contido estático -->
         <link rel="stylesheet" href="/assets/modern_normalize.css" />
-        <link rel="stylesheet" href="/assets/style.css" />
-        <link rel="shortcut icon" href="/assets/favicon.ico" />
+        <link rel="stylesheet" href="/assets/base.css" />
+        <link rel="stylesheet" href="/assets/custom.css" />
+        <link rel="shortcut icon" href="/assets/favicon.ico" /> 
 
         {% block head %}{% endblock %}
     </head>
@@ -28,8 +34,29 @@
             <h1>Nada que ver aquí 🤫</h1>
             {% endblock %}
         </div>
-    </body>
-    <footer>
-        <p>Creado con amor polo equipo CineMazarelos da facultade de Filosofía USC</p>
-    </footer>
+
+        <!-- Barra final da web -->
+        <footer>
+            <style>
+                this {
+                    display: flex;
+                    align-items: center;
+                }
+
+                this p {
+                    flex-grow: 1;
+                }
+            </style>
+            <p>Creado con amor polo equipo CineMazarelos da facultade de Filosofía USC</p>
+            <div _="on load
+                    if localStorage.accessible is 'true' add @accessible='true' to <:root/>
+            ">
+                <button _="on click
+                    toggle @accessible='true' on <:root/>
+                    if localStorage.accessible is 'true' set localStorage.accessible to 'false'
+                    else set localStorage.accessible to 'true'
+                ">Accesibilidade</button>
+            </div>
+        </footer>
+    </body> 
 </html>
