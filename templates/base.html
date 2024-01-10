@@ -1,22 +1,22 @@
 <!doctype html>
 <html lang="gl">
     <head>
-        <script src="https://unpkg.com/htmx.org/dist/htmx.min.js"></script>
-        <script src="/static/inline_css.js"></script>
-
-        <link rel="stylesheet" href="/static/modern_normalize.css" />
-        <link rel="stylesheet" href="/static/style.css" />
-        <link rel="shortcut icon" href="/static/favicon.ico" />
-
-        {% block head %}{% endblock %}
-
-        <title>Cinemazarelos</title>
+        <title>{% block title %}Cinemazarelos{% endblock %}</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <meta
-            name="keywords"
-            content="cine, cineclube, ciclo de cine, películas, filosofía, usc, estudantes"
+            name="description"
+            content="A páxina web do ciclo de cine da Facultade de Filosofía da USC. Infórmate sobre as próximas sesións e descubre todas as novidades."
         />
+
+        <script src="https://unpkg.com/htmx.org/dist/htmx.min.js"></script>
+        <script src="/assets/inline_css.js"></script>
+
+        <link rel="stylesheet" href="/assets/modern_normalize.css" />
+        <link rel="stylesheet" href="/assets/style.css" />
+        <link rel="shortcut icon" href="/assets/favicon.ico" />
+
+        {% block head %}{% endblock %}
     </head>
     <body>
         <!-- Barra de navegacion -->

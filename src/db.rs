@@ -85,6 +85,11 @@ impl Cache {
             }
         }
     }
+
+    fn clear(&mut self) {
+        std::fs::remove_file(".cache").ok();
+        *self = Self::default();
+    }
 }
 
 impl Default for Cache {
@@ -114,6 +119,8 @@ pub struct Conexion {
 
 pub trait RepoPeliculas {
     async fn get(&mut self) -> &Pool<Postgres>;
+    async fn clear_cache(&mut self);
+
     async fn list(&mut self) -> Vec<Pelicula>;
 }
 
@@ -128,6 +135,11 @@ impl RepoPeliculas for Conexion {
             );
         }
         self.pool.as_ref().unwrap()
+    }
+
+    async fn clear_cache(&mut self) {
+        self.cache.clear();
+        debug!("Limpouse a caché da base de datos");
     }
 
     async fn list(&mut self) -> Vec<Pelicula> {
