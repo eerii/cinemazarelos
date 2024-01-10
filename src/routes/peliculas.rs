@@ -13,7 +13,7 @@ pub struct TemplatePeliculas {
 }
 
 pub async fn peliculas(State(state): State<SharedState>) -> TemplatePeliculas {
-    let mut state = state.0.write().await;
+    let mut state = state.write().await;
     let peliculas = state.db.list().await;
 
     TemplatePeliculas { peliculas }

@@ -7,7 +7,7 @@ use tracing_subscriber::{fmt::time::OffsetTime, layer::SubscriberExt, util::Subs
 mod db;
 pub mod routes;
 
-// TODO: Xestión de errores decente
+// TODO: Xestión de errores decente (anyhow)
 
 // State
 
@@ -16,8 +16,7 @@ pub struct AppState {
     pub db: Conexion,
 }
 
-#[derive(Clone, Default)]
-pub struct SharedState(Arc<RwLock<AppState>>);
+pub type SharedState = Arc<RwLock<AppState>>;
 
 // Logs
 
