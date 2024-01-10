@@ -1,8 +1,6 @@
-use axum::{http::Request, routing::get, Router};
+use axum::http::Request;
 use cinemazarelos::{
-    init_tracing,
-    routes::{inicio::inicio, peliculas::peliculas},
-    SharedState,
+    init_tracing, routes::router,
 };
 use tokio::net::TcpListener;
 use tower_http::services::ServeDir;
@@ -14,11 +12,8 @@ async fn main() {
     init_tracing();
 
     // Rutas da aplicación
-    let app = Router::new()
-        .route("/", get(inicio))
-        .route("/peliculas", get(peliculas))
-        .nest_service("/static", ServeDir::new("static/"))
-        .with_state(SharedState::default());
+    let app = router()
+        .nest_service("/assets", ServeDir::new("assets/"));
 
     // Ferramentas para debug
     #[cfg(debug_assertions)]
@@ -35,5 +30,6 @@ async fn main() {
         "Servidor activo en http://{}",
         listener.local_addr().unwrap()
     );
+
     axum::serve(listener, app).await.unwrap();
 }

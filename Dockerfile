@@ -18,5 +18,5 @@ RUN cargo build --release --bin cinemazarelos
 FROM debian:stable-slim AS runner
 WORKDIR /app
 COPY --from=builder /app/target/release/cinemazarelos /app/
-COPY --from=builder /app/static /app/static
+COPY --from=builder /app/assets /app/assets
 CMD ./cinemazarelos
