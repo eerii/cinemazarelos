@@ -4,6 +4,7 @@ window.cssScopeCount ??= 1
 window.cssScope ??= new MutationObserver(mutations => {
     document?.body?.querySelectorAll('style:not([data-scope])').forEach(node => {
         node.dataset.scope = node.parentNode.dataset.scope ??= (window.cssScopeCount++)
+        node.style.display = 'none'
         node.textContent = node.textContent
             .replace(/((@keyframes\s|animation:|animation-name:)[^{};]*)\bme(?![A-Za-z])/g, `$1scope-${node.parentNode.dataset.scope}`)
             .replace(/(^|[^-\w])this(?![-\w])/g, `$1[data-scope='${node.parentNode.dataset.scope}']`)

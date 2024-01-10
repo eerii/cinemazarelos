@@ -1,0 +1,92 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT * FROM peliculas",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int8"
+      },
+      {
+        "ordinal": 1,
+        "name": "titulo",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 2,
+        "name": "director",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 3,
+        "name": "poster",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 4,
+        "name": "fecha",
+        "type_info": "Date"
+      },
+      {
+        "ordinal": 5,
+        "name": "presentado_por",
+        "type_info": "TextArray"
+      },
+      {
+        "ordinal": 6,
+        "name": "duracion",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 7,
+        "name": "idioma",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 8,
+        "name": "sinopsis",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 9,
+        "name": "trigger_warnings",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 10,
+        "name": "year",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 11,
+        "name": "sinopsis_es",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 12,
+        "name": "cartel_por",
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Left": []
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "2e41133d2f75b052bcc42bd222d804eea0e2d5c35aed9e46be7eb41ceceeab5b"
+}

@@ -3,18 +3,44 @@
 <!-- -->
 
 {% block content %}
-<h1>Cinemazarelos</h1>
-<h2>Titulo 2</h2>
-<h3>Titulo 3</h3>
-<h4>Titulo 4</h4>
-<p>Parrafo</p>
-<ul>
-    <li>Elemento 1</li>
-    <li>Elemento 2</li>
-    <li>Elemento 3</li>
-</ul>
-<button hx-get="/hello" hx-target="this">Hola</button>
-<form hx-post="/hello" hx-target="this">
-    <input type="text" name="name" />
-</form>
+<!-- Películas -->
+
+<div hx-get="/api/peliculas" hx-trigger="load">
+    <p class="htmx-indicator">Cargando...</p>
+</div>
+
+<!-- Widgets -->
+
+<div>
+    <style>
+        this { display: flex; }
+        this div { flex: 50%; }
+        @media sm- {
+            this { flex-direction: column; }
+        }
+    </style>
+    <div>
+        <h2>Recibe as nosas novas no teu correo</h2>
+        <input type="email" name="email" placeholder="Email">
+
+        <h2>Calendario</h2>
+        <div>
+            <style>
+                this div {
+                    width: 100%;
+                    height: 2rem;
+                    background-color: #99aaff;
+                    margin-bottom: 0.5rem;
+                }
+            </style>
+
+            <div>a</div>
+            <div>b</div>
+        </div>
+    </div>
+    <div>
+        <h2>Fanzine</h2>
+    </div>
+</div>
+
 {% endblock %}

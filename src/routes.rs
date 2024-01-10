@@ -6,7 +6,7 @@ use axum::{
 
 use crate::{db::RepoPeliculas, SharedState};
 
-pub mod inicio;
+pub mod paxinas;
 pub mod peliculas;
 
 // ·······
@@ -18,13 +18,13 @@ pub fn router() -> Router {
 
     let api = Router::new()
         .route("/clear/cache", put(clear_cache))
+        .route("/peliculas", get(peliculas::peliculas))
         .with_state(state.clone());
 
     Router::new()
-        .route("/", get(inicio::inicio))
-        .route("/peliculas", get(peliculas::peliculas))
+        .route("/", get(paxinas::inicio))
+        .route("/sobre_nos", get(paxinas::sobre_nos))
         .nest("/api", api)
-        .with_state(state) // TODO: Borrar esto ó mover peliculas
 }
 
 // ···············

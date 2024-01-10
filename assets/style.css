@@ -18,6 +18,10 @@ Root
 html {
 }
 body {
+    margin-top: 2rem; /* Barra de navegacion */
+    min-height: calc(100vh - 2rem);
+    display: flex;
+    flex-direction: column;
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -79,6 +83,7 @@ search {
 }
 
 footer {
+    margin-top: auto;
 }
 
 address {
