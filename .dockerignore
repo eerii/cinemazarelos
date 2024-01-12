@@ -1,4 +1,5 @@
 .git
 .envrc
 .cache
+.cargo
 /target

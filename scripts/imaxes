@@ -1,0 +1,31 @@
+#!/bin/sh
+
+DIR=assets
+HEIGHT=400
+
+# Transforma todas as imaxes que non sexan webp (destructivo)
+IMAGES=$(find $DIR -iname "*.jpg" -o -iname "*.png")
+for f in $IMAGES; do
+    name=$(basename $f .png)
+    dir=$(dirname $f)
+    convert $f -define webp:method=6 -quality 60 $dir/$name.webp
+    echo "Transformando $f a $dir/$name.webp"
+    rm $f
+done
+
+# Elimina os directorios min de posters
+DIRS=$(find $DIR/posters -type d -iname "min")
+for d in $DIRS; do
+    rm -rf $d
+done
+
+# Redimensionar os posters (400 height)
+# Garda o resultado nunha subcarpeta min na mesma localización ca imaxe
+IMAGES=$(find $DIR/posters -iname "*.webp")
+for f in $IMAGES; do
+    name=$(basename $f .webp)
+    dir=$(dirname $f)
+    mkdir -p $dir/min
+    convert $f -resize x$HEIGHT $dir/min/$name.webp
+    echo "Thumbnail xerado para $name"
+done

@@ -1,10 +1,10 @@
 <ul>
     {% for pelicula in peliculas %}
     <li>
-        {{pelicula.titulo}} ({{pelicula.publicacion.unwrap_or(2999)}}) de {{pelicula.director}}
+        <p>{{pelicula.titulo}} ({{pelicula.publicacion.unwrap_or(2999)}}) de {{pelicula.director}}</p>
 
         {% if pelicula.poster.is_some() %}
-        <img src="{{ pelicula.poster.as_ref().unwrap() }}" width="100" />
+        <img src="{{ pelicula.poster.as_ref().unwrap() }}" alt="Poster {{ pelicula.titulo }}" width="100" />
         {% endif %}
     </li>
     {% endfor %}

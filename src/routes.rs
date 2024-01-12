@@ -1,8 +1,4 @@
-use axum::{
-    extract::State,
-    routing::{get, put},
-    Router,
-};
+use axum::{extract::State, routing::get, Router};
 
 use crate::{db::RepoPeliculas, SharedState};
 
@@ -10,14 +6,9 @@ mod novidades;
 mod paxinas;
 mod peliculas;
 
-// Para a páxina web de producción utilizamos github como CDN para non pagar a
-// bandwidth do servidor. Se só usamos imaxes pequenas poderíamos plantealo
-// deixalo como local tamén en producción.
-pub const CDN_URL: &str = if cfg!(debug_assertions) {
-    "/assets"
-} else {
-    "https://raw.githubusercontent.com/eerii/cinemazarelos/main/assets"
-};
+// Non utilizamos CDN por defecto, se vemos que a bandwidth é moita podemos usar
+// github "https://raw.githubusercontent.com/eerii/cinemazarelos/main/assets"
+pub const CDN_URL: &str = "/assets";
 
 // ·······
 // Routers
@@ -27,7 +18,7 @@ pub fn router() -> Router {
     let state = SharedState::default();
 
     let api = Router::new()
-        .route("/clear/cache", put(clear_cache))
+        .route("/clear/cache", get(clear_cache))
         .route(
             "/peliculas/carrousel",
             get(peliculas::carrousel),

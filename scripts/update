@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Descarga as últimas versións de htmx e hyperscript
+curl https://unpkg.com/htmx.org/dist/htmx.min.js -o assets/lib/htmx.min.js -L
+curl https://unpkg.com/hyperscript.org -o assets/lib/hyperscript.min.js -L
+
+# Actualiza rust con cargo update
+cargo update

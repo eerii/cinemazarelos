@@ -46,7 +46,7 @@ pub async fn carrousel(
         let curso = curso.year() % 100 - if (curso.month() as i32) < 7 { 1 } else { 0 };
 
         *poster = format!(
-            "{}/posters/{}{}/{}.webp",
+            "{}/posters/{}{}/min/{}.webp",
             CDN_URL,
             curso,
             curso + 1,
