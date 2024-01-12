@@ -4,12 +4,7 @@ use std::{
 };
 
 use serde::{Deserialize, Serialize};
-use sqlx::{
-    postgres::PgPoolOptions,
-    query_as,
-    types::time::Date,
-    Pool, Postgres,
-};
+use sqlx::{postgres::PgPoolOptions, query_as, types::time::Date, Pool, Postgres};
 use tracing::{debug, warn};
 
 const CACHE_DURATION: Duration = Duration::from_secs(6 * 60 * 60);

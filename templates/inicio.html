@@ -24,7 +24,7 @@
     </style>
 </div>
 
-<div hx-get="/api/peliculas?n=3" hx-trigger="load">
+<div hx-get="/api/peliculas/carrousel?n=3" hx-trigger="load">
     <p class="htmx-indicator">Cargando...</p>
 </div>
 
@@ -58,22 +58,9 @@
         <h2>Recibe as nosas novas no teu correo</h2>
         <input type="email" name="email" placeholder="Email">
 
-        <h2>Calendario</h2>
-        <div>
-            <style>
-                
-            </style>
-
-            <div></div>
-            <div></div>
-        </div>
+        <div hx-get="/api/peliculas/calendario" hx-trigger="load" hx-swap="outerHTML"></div>
     </div>
-    <div>
-        <h2>Fanzine</h2>
-        <div style="height: 10rem;">
-            <a href="https://raw.githubusercontent.com/eerii/cinemazarelos/main/assets/fanzines/fanzine_2122.pdf" target="_blank">Fanzine 2022</a>
-        </div>
-    </div>
+    <div hx-get="/api/novidades" hx-trigger="load" hx-swap="outerHTML"></div>
 </div>
 
 {% endblock %}
