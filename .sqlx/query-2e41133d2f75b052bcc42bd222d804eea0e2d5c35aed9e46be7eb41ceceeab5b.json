@@ -21,31 +21,31 @@
       {
         "ordinal": 3,
         "name": "poster",
-        "type_info": "Uuid"
+        "type_info": "Text"
       },
       {
         "ordinal": 4,
-        "name": "fecha",
-        "type_info": "Date"
+        "name": "publicacion",
+        "type_info": "Int2"
       },
       {
         "ordinal": 5,
-        "name": "presentado_por",
-        "type_info": "TextArray"
+        "name": "duracion",
+        "type_info": "Int2"
       },
       {
         "ordinal": 6,
-        "name": "duracion",
-        "type_info": "Int4"
-      },
-      {
-        "ordinal": 7,
         "name": "idioma",
         "type_info": "Text"
       },
       {
+        "ordinal": 7,
+        "name": "sinopsis_gl",
+        "type_info": "Text"
+      },
+      {
         "ordinal": 8,
-        "name": "sinopsis",
+        "name": "sinopsis_es",
         "type_info": "Text"
       },
       {
@@ -55,18 +55,18 @@
       },
       {
         "ordinal": 10,
-        "name": "year",
-        "type_info": "Int4"
+        "name": "fecha_ciclo",
+        "type_info": "Date"
       },
       {
         "ordinal": 11,
-        "name": "sinopsis_es",
-        "type_info": "Text"
+        "name": "presentado_por",
+        "type_info": "TextArray"
       },
       {
         "ordinal": 12,
         "name": "cartel_por",
-        "type_info": "Text"
+        "type_info": "TextArray"
       }
     ],
     "parameters": {

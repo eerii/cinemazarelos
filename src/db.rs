@@ -7,7 +7,7 @@ use serde::{Deserialize, Serialize};
 use sqlx::{
     postgres::PgPoolOptions,
     query_as,
-    types::{time::Date, Uuid},
+    types::time::Date,
     Pool, Postgres,
 };
 use tracing::{debug, warn};
@@ -18,20 +18,19 @@ const CACHE_DURATION: Duration = Duration::from_secs(6 * 60 * 60);
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Pelicula {
-    // TODO: Reordear tabla
     pub id: Option<i64>,
     pub titulo: String,
     pub director: String,
-    pub poster: Option<Uuid>,
-    pub fecha: Option<Date>,
-    pub presentado_por: Option<Vec<String>>,
-    pub duracion: Option<i32>,
+    pub poster: Option<String>,
+    pub publicacion: Option<i16>,
+    pub duracion: Option<i16>,
     pub idioma: Option<String>,
-    pub sinopsis: Option<String>,
-    pub trigger_warnings: Option<String>,
-    pub year: Option<i32>,
+    pub sinopsis_gl: Option<String>,
     pub sinopsis_es: Option<String>,
-    pub cartel_por: Option<String>,
+    pub trigger_warnings: Option<String>,
+    pub fecha_ciclo: Option<Date>,
+    pub presentado_por: Option<Vec<String>>,
+    pub cartel_por: Option<Vec<String>>,
 }
 
 // Caché de datos
