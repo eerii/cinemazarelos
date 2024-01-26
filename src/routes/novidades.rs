@@ -1,7 +1,7 @@
 use askama::Template;
 
 #[derive(Template)]
-#[template(path = "novidades.html")]
+#[template(path = "componentes/novidades.html")]
 pub struct TemplateNovidades;
 
 pub async fn novidades() -> TemplateNovidades {

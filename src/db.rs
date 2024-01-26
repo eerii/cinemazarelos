@@ -138,7 +138,6 @@ impl RepoPeliculas for Conexion {
 
     async fn list(&mut self) -> Vec<Pelicula> {
         if let Some(cache) = self.cache.peliculas.get().cloned() {
-            debug!("Usando caché para a lista de películas");
             return cache;
         }
 

@@ -1,0 +1,21 @@
+<div class="paragrafos">
+    <style>
+        this {
+            margin-bottom: var(--spacing);
+        }
+    </style>
+
+    {% for pelicula in peliculas %}
+    <div class="tarxeta">
+        <p>
+        {{ format!("{:?}", pelicula.fecha_ciclo.unwrap()) }} - {{ pelicula.titulo }}
+        </p>
+    </div>
+    {% endfor %}
+</div>
+
+{% if paxina.is_some() %}
+<button class='btn' hx-get="/api/peliculas/lista?paxina={{ paxina.unwrap() }}" hx-swap="outerHTML">
+     Cargar mais
+</button>
+{% endif %}

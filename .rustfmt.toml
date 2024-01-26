@@ -1,4 +1,5 @@
 condense_wildcard_suffixes = true
+editino = "2021"
 fn_call_width = 40                  # 60
 format_code_in_doc_comments = true
 group_imports = "StdExternalCrate"

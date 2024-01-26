@@ -75,9 +75,12 @@ body {
 
     margin-top: var(--nav-height);
     padding: 0 calc(var(--spacing) * 2);
-    min-height: calc(100vh - var(--nav-height));
 
     background-color: var(--bg);
+}
+
+.contido {
+    min-height: calc(100vh - var(--nav-height) - var(--spacing) * 3 - 1rem);
 }
 
 /* Universal */

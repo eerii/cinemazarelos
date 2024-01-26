@@ -6,9 +6,13 @@ mod novidades;
 mod paxinas;
 mod peliculas;
 
-// Non utilizamos CDN por defecto, se vemos que a bandwidth é moita podemos usar
-// github "https://raw.githubusercontent.com/eerii/cinemazarelos/main/assets"
-pub const CDN_URL: &str = "/assets";
+// Utilizamos github como CDN para assets (posters e imaxes)
+// Isto permite non ter que facer un build se só se engaden assets
+pub const CDN_URL: &str = if cfg!(debug_assertions) {
+    "/assets"
+} else {
+    "https://raw.githubusercontent.com/eerii/cinemazarelos/main/assets"
+};
 
 // ·······
 // Routers
@@ -27,12 +31,17 @@ pub fn router() -> Router {
             "/peliculas/calendario",
             get(peliculas::calendario),
         )
+        .route(
+            "/peliculas/lista",
+            get(peliculas::lista),
+        )
         .route("/novidades", get(novidades::novidades))
         .with_state(state.clone());
 
     Router::new()
         .route("/", get(paxinas::inicio))
         .route("/sobre_nos", get(paxinas::sobre_nos))
+        .route("/peliculas", get(paxinas::peliculas))
         .nest("/api", api)
 }
 

@@ -26,10 +26,15 @@ pub fn init_tracing() {
     let offset = time::UtcOffset::current_local_offset().unwrap_or(time::UtcOffset::UTC);
     let timer = OffsetTime::new(offset, timer);
 
+    let level = if cfg!(debug_assertions) {
+        "cinemazarelos=debug,tower_http=debug"
+    } else {
+        "cinemazarelos=info,tower_http=info"
+    };
+
     tracing_subscriber::registry()
         .with(
-            tracing_subscriber::EnvFilter::try_from_default_env()
-                .unwrap_or_else(|_| "cinemazarelos=debug,tower_http=debug".into()),
+            tracing_subscriber::EnvFilter::try_from_default_env().unwrap_or_else(|_| level.into()),
         )
         .with(tracing_subscriber::fmt::layer().compact().with_timer(timer))
         .init();
