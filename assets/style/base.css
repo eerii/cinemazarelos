@@ -26,13 +26,6 @@ Tipografias
     font-weight: 800;
 }
 
-/* Universal */
-
-*,
-*::before,
-*::after {
-}
-
 /* Raiz do documento */
 /* Aqui definimos todolas variables globais */
 
@@ -41,7 +34,7 @@ Tipografias
     --font-title: "Gazpacho";
 
     --bg: #0f1119;
-    --fg: #f5dc9a;
+    --fg: #f5d47a;
     --accent: #dc87bd;
     --ok: #639464;
     --error: #d1525e;
@@ -55,6 +48,8 @@ Tipografias
     --nav-height: 4rem;
     --spacing: 1rem;
     --radius: 0.5rem;
+
+    --trans-time: 0.3s;
 
     font-family: var(--font-text);
 
@@ -83,6 +78,17 @@ body {
     min-height: calc(100vh - var(--nav-height));
 
     background-color: var(--bg);
+}
+
+/* Universal */
+
+*,
+*::before,
+*::after {
+}
+
+* {
+    transition: all var(--trans-time) cubic-bezier(0.12, 0.23, 0.44, 1.54);
 }
 
 /* Titulos */
@@ -164,7 +170,8 @@ hr,
 dl {
 }
 
-p {
+p:not(:last-of-type) {
+    margin-bottom: var(--spacing);
 }
 
 ol,
@@ -285,6 +292,7 @@ ins {
 /* Contido embedido */
 
 img {
+    border-radius: var(--radius);
 }
 svg {
 }
@@ -345,6 +353,15 @@ input,
 textarea,
 select,
 button {
+    background-color: var(--accent);
+    border: none;
+    border-radius: var(--radius);
+    outline: none;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background-color: var(--fg);
 }
 
 textarea,
@@ -360,6 +377,8 @@ input[type="datetime-local"],
 input[type="month"],
 input[type="week"],
 input[type="time"] {
+    background-color: #00000000;
+    color: var(--fg);
 }
 
 textarea {

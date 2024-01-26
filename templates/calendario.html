@@ -1,7 +1,7 @@
 <h2>Calendario</h2>
 <div>
     {% for pelicula in peliculas %}
-    <div>
+    <div class="tarxeta">
         <p>{{ format!("{:?}", pelicula.fecha_ciclo.unwrap()) }} - {{ pelicula.titulo }}</p>
     </div>
     {% endfor %}

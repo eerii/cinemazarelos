@@ -11,9 +11,8 @@
         />
 
         <!-- Scripts -->
-        <!-- Inclúe htmx, hyperscript e inline css -->
+        <!-- Inclúe htmx e inline css -->
         <script src="/assets/lib/htmx.min.js"></script>
-        <script src="/assets/lib/hyperscript.min.js"></script>
         <script src="/assets/lib/inline_css.js"></script>
         <!-- <script src="https://unpkg.com/htmx.org/dist/htmx.min.js"></script> -->
         <!-- <script src="https://unpkg.com/hyperscript.org"></script> -->
@@ -22,7 +21,11 @@
         <link rel="stylesheet" href="/assets/style/modern_normalize.css" />
         <link rel="stylesheet" href="/assets/style/base.css" />
         <link rel="stylesheet" href="/assets/style/custom.css" />
-        <link rel="shortcut icon" href="/assets/favicon.ico" /> 
+        <link rel="shortcut icon" href="/assets/favicon.ico" />
+
+        <!-- Precarga -->
+        <link rel="preload" href="/assets/fonts/mabry.ttf" />
+        <link rel="preload" href="/assets/fonts/gzpch_bold.ttf" />
 
         {% block head %}{% endblock %}
     </head>
@@ -43,22 +46,33 @@
                 this {
                     display: flex;
                     align-items: center;
+
+                    padding: var(--spacing) 0;
+                    margin-top: var(--spacing);
+                    border-top: 1px solid var(--bg-lighter);
                 }
 
                 this p {
                     flex-grow: 1;
+                    color: var(--accent);
                 }
             </style>
             <p>Creado con amor polo equipo CineMazarelos da facultade de Filosofía USC</p>
-            <div _="on load
-                    if localStorage.accessible is 'true' add @accessible='true' to <:root/>
-            ">
-                <button _="on click
-                    toggle @accessible='true' on <:root/>
-                    if localStorage.accessible is 'true' set localStorage.accessible to 'false'
-                    else set localStorage.accessible to 'true'
-                ">Accesibilidade</button>
-            </div>
+            <script type="text/javascript">
+                const set = (name) => {
+                    if (localStorage.getItem(name) === 'true') {
+                        document.documentElement.setAttribute(name, 'true');
+                    } else {
+                        document.documentElement.removeAttribute(name);
+                    }
+                }
+                const toggle = (name) => {
+                    localStorage.setItem(name, localStorage.getItem(name) == 'true' ? 'false' : 'true');
+                    set(name);
+                }
+                set('accessible');
+            </script>
+            <button onclick="toggle('accessible')">Accesibilidade</button>
         </footer>
-    </body> 
+    </body>
 </html>

@@ -1,1 +1,82 @@
 /* Estilo para clases */
+
+/* Tarxeta */
+/* Rectángulo con bordes redondeados e un borde interactivo */
+
+.tarxeta {
+    width: 100%;
+    min-height: 4rem;
+    padding: 1rem;
+
+    display: flex;
+    gap: var(--spacing);
+    align-items: center;
+
+    background-color: var(--bg-light);
+    border: 1px solid var(--bg-lighter);
+    border-radius: var(--radius);
+}
+
+.tarxeta:hover {
+    transform: scale(1.02);
+    background-color: var(--bg-lighter);
+    border-color: var(--accent);
+}
+
+.tarxeta:not(.tarxeta:last-of-type) {
+    margin-bottom: var(--spacing);
+}
+
+/* TODO: Efecto brillo bordes */
+
+/* Paragrafos */
+/* Os paragrafos deste texto animaranse un a un, creando un efecto bonito */
+
+.paragrafos {
+    max-width: 48rem;
+    counter-reset: paragraph;
+}
+
+.paragrafos > p {
+    counter-increment: paragraph;
+    animation: paragraph_in 0.5s both;
+}
+
+@keyframes paragraph_in {
+    0% {
+        opacity: 0;
+        transform: translateY(20%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.paragrafos > p:nth-child(0) {
+    animation-delay: 0.2s;
+}
+.paragrafos > p:nth-child(1) {
+    animation-delay: 0.3s;
+}
+.paragrafos > p:nth-child(2) {
+    animation-delay: 0.4s;
+}
+.paragrafos > p:nth-child(3) {
+    animation-delay: 0.5s;
+}
+.paragrafos > p:nth-child(4) {
+    animation-delay: 0.6s;
+}
+.paragrafos > p:nth-child(5) {
+    animation-delay: 0.7s;
+}
+.paragrafos > p:nth-child(6) {
+    animation-delay: 0.8s;
+}
+.paragrafos > p:nth-child(7) {
+    animation-delay: 0.9s;
+}
+.paragrafos > p:nth-child(8) {
+    animation-delay: 1s;
+}

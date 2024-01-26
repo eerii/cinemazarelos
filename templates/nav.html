@@ -1,4 +1,51 @@
 <div>
+    <div>
+        <h1>CineMa<span id="alt">zarelos</span></h1>
+        <span></span>
+        <a href="/">Inicio</a>
+        <a href="/sobre_nos">Sobre nós</a>
+        <a href="https://www.instagram.com/cinemazarelos" target="_blank" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="24"
+                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <rect x="4" y="4" width="16" height="16" rx="4" />
+                <circle cx="12" cy="12" r="3" />
+                <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
+            </svg>
+        </a>
+        <a href="https://www.filmaffinity.com/es/userreviews.php?user_id=5661081" target="_blank"
+            aria-label="Filmaffinity">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="24"
+                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <rect x="4" y="4" width="16" height="16" rx="2" />
+                <line x1="8" y1="4" x2="8" y2="20" />
+                <line x1="16" y1="4" x2="16" y2="20" />
+                <line x1="4" y1="8" x2="8" y2="8" />
+                <line x1="4" y1="16" x2="8" y2="16" />
+                <line x1="4" y1="12" x2="20" y2="12" />
+                <line x1="16" y1="8" x2="20" y2="8" />
+                <line x1="16" y1="16" x2="20" y2="16" />
+            </svg>
+        </a>
+        <a href="https://letterboxd.com/cinemazarelos" target="_blank" aria-label="Letterboxd">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="24"
+                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
+                <g transform="matrix(1,0,0,1,0.28094,0.108175)">
+                    <circle cx="5.254" cy="11.892" r="4.395" />
+                </g>
+                <g transform="matrix(1,0,0,1,6.79829,0.108175)">
+                    <circle cx="5.254" cy="11.892" r="4.395" />
+                </g>
+                <g transform="matrix(1,0,0,1,13.3156,0.108175)">
+                    <circle cx="5.254" cy="11.892" r="4.395" />
+                </g>
+            </svg>
+        </a>
+    </div>
     <style>
         this {
             position: fixed;
@@ -9,7 +56,7 @@
 
             padding: 0 calc(var(--spacing) * 2);
 
-            animation-name: oscurecer_fondo;
+            animation-name: escurecer_fondo;
             animation-timeline: scroll(root);
             animation-timing-function: linear;
         }
@@ -24,26 +71,63 @@
             border-bottom: 1px solid var(--bg-lighter);
         }
 
-        this h1 {
+        this span {
             flex-grow: 1;
         }
 
-        this span {
+        this #alt,
+        this a {
             color: var(--fg);
         }
 
-        @keyframes oscurecer_fondo {
+        this a {
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+        }
+
+        this svg {
+            color: var(--accent);
+        }
+
+        this h1:hover {
+            animation: logo_hover 0.7s;
+            cursor: default;
+        }
+
+        this h1:hover #alt {
+            animation: logo_hover_alt 0.7s;
+        }
+
+        this a:hover {
+            color: var(--accent);
+            scale: 1.05;
+        }
+
+        this svg:hover {
+            color: var(--fg);
+            scale: 1.05;
+        }
+
+        @keyframes escurecer_fondo {
+
             40%,
             to {
                 background-color: var(--bg);
                 backdrop-filter: blur(0.5rem);
             }
         }
+
+        @keyframes logo_hover {
+            50% {
+                color: var(--fg);
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes logo_hover_alt {
+            50% {
+                color: var(--accent);
+            }
+        }
     </style>
-    <div>
-        <h1>CineMa<span>zarelos</span></h1>
-        <a href="/"><h3>Inicio</h3></a>
-        <a href="/sobre_nos"><h3>Sobre nós</h3></a>
-        <a href="/"><h3>Redes</h3></a>
-    </div>
 </div>

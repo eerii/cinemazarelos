@@ -1,6 +1,6 @@
 <ul>
     {% for pelicula in peliculas %}
-    <li>
+    <li style="min-height: 8rem;">
         <p>{{pelicula.titulo}} ({{pelicula.publicacion.unwrap_or(2999)}}) de {{pelicula.director}}</p>
 
         {% if pelicula.poster.is_some() %}

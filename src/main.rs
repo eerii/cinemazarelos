@@ -1,4 +1,3 @@
-use axum::http::Request;
 use cinemazarelos::{init_tracing, routes::router};
 use tokio::net::TcpListener;
 use tower_http::services::ServeDir;
@@ -15,7 +14,7 @@ async fn main() {
     // Ferramentas para debug
     #[cfg(debug_assertions)]
     let app = {
-        fn not_htmx<T>(req: &Request<T>) -> bool {
+        fn not_htmx<T>(req: &axum::http::Request<T>) -> bool {
             !req.headers().contains_key("hx-request")
         }
         app.layer(tower_livereload::LiveReloadLayer::new().request_predicate(not_htmx))
