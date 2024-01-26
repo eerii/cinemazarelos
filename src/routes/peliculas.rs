@@ -28,7 +28,6 @@ pub fn engadir_poster(peliculas: &mut Vec<Pelicula>) {
     }
 }
 
-
 // ·····
 // Lista
 // ·····
@@ -71,7 +70,10 @@ pub async fn lista(
     // Obtemos os enlaces dos posters
     engadir_poster(&mut peliculas);
 
-    TemplateListaPeliculas { peliculas, paxina: seguinte }
+    TemplateListaPeliculas {
+        peliculas,
+        paxina: seguinte,
+    }
 }
 
 // ·········

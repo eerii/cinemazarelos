@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+<!-- -->
+
+{% block content %}
+<h1>{{ datos.titulo }}</h1>
+
+<p>Autores: {% if datos.autores.is_some() %}{{ datos.autores.as_ref().unwrap() }}{% endif %} - Data: {% if datos.data.is_some() %}{{ datos.data.as_ref().unwrap() }}{% endif %}</p>
+
+<hr/>
+
+{% if contido.is_some() %}
+    <div class="paragrafos">
+    {{contido.as_ref().unwrap()|markdown}}
+    </div>
+{% endif %}
+{% endblock %}

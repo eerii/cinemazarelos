@@ -10,11 +10,12 @@ opt-level = 3
 opt-level = 3
 
 [dependencies]
-askama = { version = "0.12", features = ["with-axum"] }
+askama = { version = "0.12", features = ["with-axum", "markdown"] }
 askama_axum = "0.4"
 axum = "0.7"
 bitcode = { version = "0.5", features = ["serde"] }
 chrono = { version = "0.4", features = ["serde"] }
+gray_matter = "0.2"
 serde = { version = "1.0", features = ["derive"] }
 sqlx = { version = "0.7", features = [ "runtime-tokio", "tls-rustls", "postgres", "time" ] }
 time = { version = "0.3", features = ["serde", "local-offset"] }

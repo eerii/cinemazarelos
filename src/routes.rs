@@ -2,6 +2,7 @@ use axum::{extract::State, routing::get, Router};
 
 use crate::{db::RepoPeliculas, SharedState};
 
+mod blog;
 mod novidades;
 mod paxinas;
 mod peliculas;
@@ -22,6 +23,7 @@ pub fn router() -> Router {
     let state = SharedState::default();
 
     let api = Router::new()
+        .route("/ping", get(noop))
         .route("/clear/cache", get(clear_cache))
         .route(
             "/peliculas/carrousel",
@@ -42,12 +44,16 @@ pub fn router() -> Router {
         .route("/", get(paxinas::inicio))
         .route("/sobre_nos", get(paxinas::sobre_nos))
         .route("/peliculas", get(paxinas::peliculas))
+        .route("/blog/:articulo", get(blog::blog))
         .nest("/api", api)
 }
 
 // ···············
 // Funcións soltas
 // ···············
+
+// Non fai nada
+pub async fn noop() {}
 
 // Limpa o caché da base de datos
 pub async fn clear_cache(State(state): State<SharedState>) {

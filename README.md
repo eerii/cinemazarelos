@@ -7,7 +7,7 @@ Web do ciclo de cine da Facultade de Filosofía USC
 Para editar o proxecto necesitas unha conta de [github](https://github.com). Este é un software de control de versións que contén todo o código da web.
 
 1. Crear unha nova conta ([guía](https://docs.github.com/es/get-started/quickstart/creating-an-account-on-github#signing-up-for-a-new-personal-account))
-2. Solicitar acceso a [@eerii](https://github.com/eerii) ou [@LopezGolan](https://github.com/LopezGolan)) indicando o teu nombre de usuario ou correo electrónico
+2. Solicitar acceso a [@eerii](https://github.com/eerii) ou [@LopezGolan](https://github.com/LopezGolan) indicando o teu nombre de usuario ou correo electrónico
 3. Recibirás unha notificación por correo cunha invitación, preme no botón de aceptar
 
 Unha vez sexas colaboradore podes facer cambios no repositorio.
@@ -38,7 +38,7 @@ Xa sabemos cómo entrar no repositorio, agora vexamos os cambios que podemos fac
 
 Para almacear a táboa de películas estamos utilizando unha base de datos. É algo moi parecido a un excel, pero está feito para que o ordenador que executa a páxina web o poida entender mellor. A base de datos é PostgreSQL e está aloxada en [supabase](https://supabase.com/). 
 
-1. Necesitarás solicitar acceso a [@eerii](https://github.com/eerii) ou [@LopezGolan](https://github.com/LopezGolan)) indicando o teu correo electrónico (neste caso **non** hai que crear unha conta antes)
+1. Necesitarás solicitar acceso a [@eerii](https://github.com/eerii) ou [@LopezGolan](https://github.com/LopezGolan) indicando o teu correo electrónico (neste caso **non** hai que crear unha conta antes)
 2. Segue as instruccións no teu correo para rexistrarte
 3. Verifica que tes acceso ó proxecto `cinemazarelos`
 
@@ -65,7 +65,7 @@ O seguinte paso é crear unha nova páxina ou artículo do blog, ou modificar un
 - Editar `templates/componentes/novidades.html` para cambiar o que se ve na columna dereita da páxina de inicio. Agora mesmo está o anuncio do fanzine.
 - Copiar `templates/paxinas/sobre_nos.html` para facer unha nova páxina con texto e imaxes. Editar só entre as liñas marcadas por `{% block content %}` e `{% endblock %}`. Nota: tamén hai que modificar `src/routes/paxinas.rs`, mellor avisar a [@eerii](https://github.com/eerii) se non sabes o que fas.
 
-Os artículos do blog non utilizan html, usan markdown, unha linguaxe moito máis sencilla para facer texto formateado. É o mesmo no que está escrito este documento, podes velo en `README.md`. Nesta [ligazón](https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) tedes unha guía rápida de como utilizalo. Para crear ou editar un artículo do blog abre a carpeta `assets/blog` e mira os arquivos que ten. Nota: Esta funcionalidade aínda está en probas.
+Os artículos do blog non utilizan html, usan markdown, unha linguaxe moito máis sencilla para facer texto formateado. É o mesmo no que está escrito este documento, podes velo en `README.md`. Nesta [ligazón](https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) tedes unha guía rápida de como utilizalo. Para crear ou editar un artículo do blog abre a carpeta `blog` e mira os arquivos que ten. Nota: Esta funcionalidade aínda está en probas.
 
 ### Nivel 3: Crear unha nova api ou páxina dinámica
 
