@@ -1,8 +1,35 @@
 <h2>Calendario</h2>
 <div>
+    <style>
+        this #cadro-data {
+            background-color: var(--accent);
+            height: 3rem;
+            width: 3rem;
+            border-radius: calc(var(--radius) * 0.7);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        this #cadro-data>p {
+            margin: 0;
+            color: var(--bg);
+        }
+
+        this #cadro-data>p:first-child {
+            font-size: 1.3rem;
+        }
+    </style>
+
     {% for pelicula in peliculas %}
     <div class="tarxeta">
-        <p>{{ format!("{:?}", pelicula.fecha_ciclo.unwrap()) }} - {{ pelicula.titulo }}</p>
+        <div id="cadro-data">
+            <p>{{ format!("{}", pelicula.fecha_ciclo.unwrap().day()) }}</p>
+            {% let n = u8::try_from(pelicula.fecha_ciclo.unwrap().month()).unwrap() %}
+        </div>
+        <p>{{ pelicula.titulo }}</p>
     </div>
     {% endfor %}
 </div>

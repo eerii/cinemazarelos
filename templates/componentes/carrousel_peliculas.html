@@ -1,11 +1,67 @@
-<ul>
-    {% for pelicula in peliculas %}
-    <li style="min-height: 8rem;">
-        <p>{{pelicula.titulo}} ({{pelicula.publicacion.unwrap_or(2999)}}) de {{pelicula.director}}</p>
+<div>
+    <style>
+        this {
+            display: flex;
+            gap: var(--spacing);
+            margin-top: calc(var(--spacing) * 2);
+        }
 
-        {% if pelicula.poster.is_some() %}
-        <img src="{{ pelicula.poster.as_ref().unwrap() }}" alt="Poster {{ pelicula.titulo }}" width="100" />
-        {% endif %}
-    </li>
+        this h3 {
+            padding: 0;
+        }
+
+        this img {
+            border-radius: calc(var(--radius) * 0.7);
+            min-width: 200px;
+        }
+
+        this .tarxeta.inactive {
+            flex-basis: fit-content;
+        }
+
+        this #descripcion {
+            display: flex;
+            flex-direction: column;
+
+            height: 283px;
+        }
+
+
+        this #titulo-desc {
+            flex-grow: 1;
+        }
+
+        this #subtitulo-desc {
+            color: var(--bg-base);
+        }
+
+        this #sinopsis-desc {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+
+            overflow: hidden;
+        }
+
+        this .tarxeta.inactive>#descripcion {
+            display: none;
+        }
+    </style>
+
+    {% for pelicula in peliculas %}
+    <div class="tarxeta{% if loop.index> 1 %} inactive{% endif %}">
+        <img src="{{ pelicula.poster.clone().unwrap_or(" /assets/posters/sen-portada.webp".into()) }}"
+            alt="Poster {{ pelicula.titulo }}" width="200" />
+
+        <div id="descripcion">
+            <div id="titulo-desc">
+                <h3>{{ pelicula.titulo }}</h3>
+                <p id="subtitulo-desc">{{ pelicula.duracion.unwrap_or(0) }} min - {{
+                    pelicula.idioma.clone().unwrap_or("Varios".into())
+                    }} - {{ pelicula.publicacion.unwrap_or(1969) }}</p>
+            </div>
+            <p id="sinopsis-desc">{{ pelicula.sinopsis_gl.clone().unwrap_or("Descripción...".into()) }}</p>
+        </div>
+    </div>
     {% endfor %}
-</ul>
+</div>

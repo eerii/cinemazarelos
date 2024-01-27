@@ -11,6 +11,9 @@ use crate::{
 };
 
 const LISTA_N_PELICULAS: usize = 8;
+const NOMES_MESES: [&str; 12] = [
+    "xan", "feb", "mar", "abr", "mai", "xuñ", "xul", "ago", "set", "out", "nov", "dec",
+];
 
 pub fn engadir_poster(peliculas: &mut Vec<Pelicula>) {
     for pelicula in peliculas {
@@ -124,6 +127,7 @@ pub async fn carrousel(
 #[template(path = "componentes/calendario_peliculas.html")]
 pub struct TemplateCalendarioPeliculas {
     peliculas: Vec<Pelicula>,
+    nomes: [&'static str; 12],
 }
 
 pub async fn calendario(State(state): State<SharedState>) -> TemplateCalendarioPeliculas {
@@ -141,5 +145,8 @@ pub async fn calendario(State(state): State<SharedState>) -> TemplateCalendarioP
     let hoxe = Date::from_ordinal_date(hoxe.year(), hoxe.ordinal() as u16).unwrap();
     peliculas.retain(|p| p.fecha_ciclo.is_some() && p.fecha_ciclo.unwrap() > hoxe);
 
-    TemplateCalendarioPeliculas { peliculas }
+    TemplateCalendarioPeliculas {
+        peliculas,
+        nomes: NOMES_MESES,
+    }
 }
