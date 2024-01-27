@@ -9,6 +9,7 @@ mod db;
 pub mod routes;
 
 // TODO: Xestión de errores decente (anyhow)
+// TODO: Adaptacións para o móvil
 
 // State
 

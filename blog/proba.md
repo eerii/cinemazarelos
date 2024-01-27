@@ -2,6 +2,7 @@
 titulo: Proba
 autores: Alguén
 data: 2022-01-01
+categorias: [hola, adios]
 ---
 
 Holi, _esto_ é una **proba**. Estamos a usar `Markdown`!

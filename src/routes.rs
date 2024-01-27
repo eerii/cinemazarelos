@@ -44,7 +44,11 @@ pub fn router() -> Router {
         .route("/", get(paxinas::inicio))
         .route("/sobre_nos", get(paxinas::sobre_nos))
         .route("/peliculas", get(paxinas::peliculas))
-        .route("/blog/:articulo", get(blog::blog))
+        .route("/blog", get(blog::lista_blog))
+        .route(
+            "/blog/:articulo",
+            get(blog::artigo_blog),
+        )
         .nest("/api", api)
 }
 
@@ -60,3 +64,5 @@ pub async fn clear_cache(State(state): State<SharedState>) {
     let mut state = state.write().await;
     state.db.clear_cache().await;
 }
+
+// TODO: Suscribirse por correo (usar debouncer para non sobrecargar bd)

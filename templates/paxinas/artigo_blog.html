@@ -3,11 +3,34 @@
 <!-- -->
 
 {% block content %}
-<h1>{{ datos.titulo }}</h1>
+<div>
+    <style>
+        this {
+            display: flex;
+            align-items: center;
+        }
 
-<p>Autores: {% if datos.autores.is_some() %}{{ datos.autores.as_ref().unwrap() }}{% endif %} - Data: {% if datos.data.is_some() %}{{ datos.data.as_ref().unwrap() }}{% endif %}</p>
+        this h1 {
+            flex-grow: 1;
+        }
 
-<hr/>
+        this div {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+        }
+    </style>
+    <h1>{{ datos.titulo }}</h1>
+
+    <div>
+        <span>{% if datos.autores.is_some() %}Escrito por: {{ datos.autores.as_ref().unwrap() }}{% endif %}{% if datos.data.is_some() %} - Data: {{ datos.data.as_ref().unwrap() }}{% endif %}</span>
+        {% if !datos.categorias.is_empty() %}
+        <span>Categorias: {% for c in datos.categorias %}{{ c }} {% endfor %}</span>
+        {% endif %}
+    </div>
+</div>
+
+<hr style="margin-top: 0;"/>
 
 {% if contido.is_some() %}
     <div class="paragrafos">

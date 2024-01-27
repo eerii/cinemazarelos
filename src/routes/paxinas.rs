@@ -1,5 +1,10 @@
 use askama::Template;
 
+// TODO: Email/formulario de contacto
+// TODO: Mapa/cómo chegar
+// TODO: Fotos do centro
+// TODO: Lista de fanzines
+
 #[derive(Template)]
 #[template(path = "paxinas/inicio.html")]
 pub struct TemplateInicio;
@@ -13,6 +18,7 @@ pub async fn inicio() -> TemplateInicio {
 pub struct TemplateSobreNos;
 
 pub async fn sobre_nos() -> TemplateSobreNos {
+    // TODO: Lista de persoas (fotos?) colaboradoras do ciclo
     TemplateSobreNos {}
 }
 

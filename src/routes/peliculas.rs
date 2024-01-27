@@ -49,6 +49,9 @@ pub async fn lista(
     State(state): State<SharedState>,
     Query(params): Query<ParamsLista>,
 ) -> TemplateListaPeliculas {
+    // TODO: Posters na lista
+    // TODO: Popup con detalles das películas
+
     let mut state = state.write().await;
     let mut peliculas = state.db.list().await;
 
@@ -96,6 +99,8 @@ pub async fn carrousel(
     State(state): State<SharedState>,
     Query(params): Query<ParamsCarrousel>,
 ) -> TemplateCarrouselPeliculas {
+    // TODO: Carrousel interactivo
+
     let mut state = state.write().await;
     let mut peliculas = state.db.list().await;
 
@@ -122,6 +127,8 @@ pub struct TemplateCalendarioPeliculas {
 }
 
 pub async fn calendario(State(state): State<SharedState>) -> TemplateCalendarioPeliculas {
+    // TODO: Engadir ó calendario
+
     let mut state = state.write().await;
     let mut peliculas = state.db.list().await;
 
