@@ -28,6 +28,7 @@
         <div id="cadro-data">
             <p>{{ format!("{}", pelicula.fecha_ciclo.unwrap().day()) }}</p>
             {% let n = u8::try_from(pelicula.fecha_ciclo.unwrap().month()).unwrap() %}
+            {{ nomes[0] }}
         </div>
         <p>{{ pelicula.titulo }}</p>
     </div>

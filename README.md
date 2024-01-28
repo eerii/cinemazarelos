@@ -56,7 +56,7 @@ Unha vez esté todo listo podemos modificar a táboa de películas.
         2. Engadir a imaxe á carpeta `assets/posters/[CURSO]` usando o editor web e facer un commit. Se vas a engadir varios é mellor facer un só commit con todos. Verificar que está ben engadida
         3. Copiar o nome de arquivo **sen** a extensión (por exemplo `02_irma_vep`) e pegalo na columna _poster_
 
-**Importante:** Non se verán os cambios ata que a páxina borre a caché. Isto sucede cada 6 horas, para facelo manualmente preme [este enlace](https://cinemazarelos.onrender.com/api/clear/cache) cando haxas cambiado todo.
+**Importante:** Non se verán os cambios ata que a páxina borre a caché. Isto sucede cada 6 horas, para facelo manualmente preme [este enlace](https://cinemazarelos.com/api/clear/cache) cando haxas cambiado todo.
 
 ### Nivel 2: Crear ou editar unha nova páxina estática
 
@@ -65,7 +65,7 @@ O seguinte paso é crear unha nova páxina ou artículo do blog, ou modificar un
 - Editar `templates/componentes/novidades.html` para cambiar o que se ve na columna dereita da páxina de inicio. Agora mesmo está o anuncio do fanzine.
 - Copiar `templates/paxinas/sobre_nos.html` para facer unha nova páxina con texto e imaxes. Editar só entre as liñas marcadas por `{% block content %}` e `{% endblock %}`. Nota: tamén hai que modificar `src/routes/paxinas.rs`, mellor avisar a [@eerii](https://github.com/eerii) se non sabes o que fas.
 
-Os artículos do blog non utilizan html, usan markdown, unha linguaxe moito máis sencilla para facer texto formateado. É o mesmo no que está escrito este documento, podes velo en `README.md`. Nesta [ligazón](https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) tedes unha guía rápida de como utilizalo. Para crear ou editar un artículo do blog abre a carpeta `blog` e mira os arquivos que ten. Nota: Esta funcionalidade aínda está en probas.
+Os artículos do blog non utilizan html, usan markdown, unha linguaxe moito máis sencilla para facer texto formateado. É o mesmo no que está escrito este documento, podes velo en `README.md`. Nesta [ligazón](https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) tedes unha guía rápida de como utilizalo. Para crear ou editar un artículo do blog abre a carpeta `assets/blog` e mira os arquivos que ten. Nota: Esta funcionalidade aínda está en probas.
 
 ### Nivel 3: Crear unha nova api ou páxina dinámica
 

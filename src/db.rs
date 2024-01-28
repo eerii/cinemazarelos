@@ -1,17 +1,15 @@
-use std::{
-    env,
-    time::{Duration, SystemTime},
-};
+use std::time::{Duration, SystemTime};
 
+use dotenvy_macro::dotenv;
 use serde::{Deserialize, Serialize};
-use sqlx::{postgres::PgPoolOptions, query_as, types::time::Date, Pool, Postgres};
+use sqlx::{postgres::PgPoolOptions, query_as, types::time::Date, FromRow, Pool, Postgres};
 use tracing::{debug, warn};
 
 const CACHE_DURATION: Duration = Duration::from_secs(6 * 60 * 60);
 
 // Estructuras
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, Clone, FromRow)]
 pub struct Pelicula {
     pub id: Option<i64>,
     pub titulo: String,
@@ -24,8 +22,8 @@ pub struct Pelicula {
     pub sinopsis_es: Option<String>,
     pub trigger_warnings: Option<String>,
     pub fecha_ciclo: Option<Date>,
-    pub presentado_por: Option<Vec<String>>,
     pub cartel_por: Option<Vec<String>>,
+    pub presentado_por: Option<Vec<String>>,
 }
 
 // Caché de datos
@@ -123,7 +121,7 @@ impl RepoPeliculas for Conexion {
         if self.pool.is_none() {
             self.pool = Some(
                 PgPoolOptions::new()
-                    .connect(&env::var("DATABASE_URL").expect("DATABASE_URL non especificada"))
+                    .connect(dotenv!("DATABASE_URL"))
                     .await
                     .expect("Fallo ó conectar ca base de datos"),
             );
@@ -141,7 +139,7 @@ impl RepoPeliculas for Conexion {
             return cache;
         }
 
-        let peliculas = query_as!(Pelicula, "SELECT * FROM peliculas")
+        let peliculas = query_as::<_, Pelicula>("SELECT * FROM peliculas")
             .fetch_all(self.get().await)
             .await
             .expect("Fallo obtendo as películas");

@@ -1,0 +1,11 @@
+[Unit]
+Description=Web do ciclo de cine
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/ubuntu/cinemazarelos
+ExecStart=/home/ubuntu/cinemazarelos/cinemazarelos
+
+[Install]
+WantedBy=default.target

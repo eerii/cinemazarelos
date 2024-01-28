@@ -7,7 +7,7 @@ use gray_matter::{engine::YAML, Matter};
 use serde::Deserialize;
 use tracing::warn;
 
-const BLOG_PATH: &str = "blog";
+const BLOG_PATH: &str = "assets/blog";
 
 // TODO: Permitir extensión html
 

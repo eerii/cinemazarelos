@@ -1,0 +1,86 @@
+name: Actualizar web 🌙
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check:
+    name: Comprobacións 👁️
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🍎
+        uses: actions/checkout@v4
+
+      - name: Cargar entorno 🤫
+        run: |
+          echo "${{ secrets.ENV_FILE }}" > .env
+
+      - name: Install rust 🦀
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: nightly
+          components: rustfmt, clippy
+
+      - name: Comprobar formato 🧹
+        run: |
+          cargo fmt -- --check
+
+      - name: Comprobar clippy 📎
+        run: |
+          cargo clippy -- -D warnings
+
+  deploy:
+    name: Desplegar 🚀
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout 🍎
+        uses: actions/checkout@v4
+
+      - name: Cargar entorno 🤫
+        run: |
+          echo "${{ secrets.ENV_FILE }}" > .env
+
+      - name: Lista de arquivos 📂
+        run: |
+          ls ${{ github.workspace }}
+
+      - name: Convertir imáxes 🖼️
+        run: |
+          chmod +x scripts/imaxes
+          ./scripts/imaxes
+
+      - name: Caché 🪴
+        uses: actions/cache@v3
+        with:
+          key: ${{ runner.os }}-${{ hashFiles('**/Cargo.lock') }}
+          path: target/
+
+      - name: Construir 📦
+        uses: houseabsolute/actions-rust-cross@v0
+        with:
+          target: aarch64-unknown-linux-gnu
+          toolchain: nightly
+          args: --release
+
+      - name: Configurar SSH 🐈
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.SSH_PRIV_KEY }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PUB_KEY }}" > ~/.ssh/id_rsa.pub
+          chmod 600 ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa.pub
+          ssh-keyscan -H ${{ secrets.IP }} >> ~/.ssh/known_hosts
+
+      - name: Desplegar 🚀
+        run: |
+          rsync -vmr ${{ github.workspace }}/target/aarch64-unknown-linux-gnu/release/cinemazarelos ${{ secrets.USER }}@${{ secrets.IP }}:/home/${{ secrets.USER }}/cinemazarelos/
+          rsync -vmr ${{ github.workspace }}/assets ${{ secrets.USER }}@${{ secrets.IP }}:/home/${{ secrets.USER }}/cinemazarelos/
+          ssh ${{ secrets.USER }}@${{ secrets.IP }} "systemctl --user restart cinemazarelos"
+
+      - name: Limpar caché da web 🧹
+        run: |
+          curl https://cinemazarelos.com/api/clear/cache
