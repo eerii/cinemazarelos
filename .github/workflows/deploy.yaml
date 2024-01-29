@@ -73,13 +73,13 @@ jobs:
           echo "${{ secrets.SSH_PUB_KEY }}" > ~/.ssh/id_rsa.pub
           chmod 600 ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa.pub
-          ssh-keyscan -H ${{ secrets.IP }} >> ~/.ssh/known_hosts
+          ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.IP }} >> ~/.ssh/known_hosts
 
       - name: Desplegar 🚀
         run: |
-          rsync -vmr ${{ github.workspace }}/target/aarch64-unknown-linux-gnu/release/cinemazarelos ${{ secrets.USER }}@${{ secrets.IP }}:/home/${{ secrets.USER }}/cinemazarelos/
-          rsync -vmr ${{ github.workspace }}/assets ${{ secrets.USER }}@${{ secrets.IP }}:/home/${{ secrets.USER }}/cinemazarelos/
-          ssh ${{ secrets.USER }}@${{ secrets.IP }} "systemctl --user restart cinemazarelos"
+          rsync -vmr -e "ssh -p ${{ secrets.SSH_PORT }}" ${{ github.workspace }}/target/aarch64-unknown-linux-gnu/release/cinemazarelos ${{ secrets.USER }}@${{ secrets.IP }}:/home/${{ secrets.USER }}/cinemazarelos/
+          rsync -vmr -e "ssh -p ${{ secrets.SSH_PORT }}" ${{ github.workspace }}/assets ${{ secrets.USER }}@${{ secrets.IP }}:/home/${{ secrets.USER }}/cinemazarelos/
+          ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.USER }}@${{ secrets.IP }} "sudo /root/restart --force"
 
       - name: Limpar caché da web 🧹
         run: |

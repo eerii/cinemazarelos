@@ -74,3 +74,7 @@ TODO: Explicar backend
 <a href="https://htmx.org/">
     <img src='assets/created_with.webp' width='250'>
 </a>
+
+### Extra
+
+Podes comprobar se hai problemas ca web [aquí](![Uptime Robot status](https://stats.uptimerobot.com/I3Dj3M0VU9/796270994).

@@ -5,10 +5,13 @@ use axum::{
     routing::get,
     Router,
 };
+use dotenvy_macro::dotenv;
 use tower_http::{timeout::TimeoutLayer, trace::TraceLayer};
 
+use self::analytics::Analytics;
 use crate::{db::RepoPeliculas, SharedState};
 
+mod analytics;
 mod blog;
 mod novidades;
 mod paxinas;
@@ -72,6 +75,7 @@ pub fn router() -> Router {
                 })
                 .on_failure(()),
             TimeoutLayer::new(Duration::from_secs(10)),
+            Analytics::new(dotenv!("API_ANALYTICS").into()),
         ))
 }
 
