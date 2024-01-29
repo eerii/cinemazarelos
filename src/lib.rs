@@ -26,12 +26,7 @@ pub fn init_tracing() {
     let timer = time::format_description::parse("[hour]:[minute]:[second]").unwrap_or_default();
     let offset = time::UtcOffset::current_local_offset().unwrap_or(time::UtcOffset::UTC);
     let timer = OffsetTime::new(offset, timer);
-
-    let level = if cfg!(debug_assertions) {
-        "cinemazarelos=debug,tower_http=debug"
-    } else {
-        "cinemazarelos=debug,tower_http=info"
-    };
+    let level = "cinemazarelos=debug,tower_http=debug";
 
     tracing_subscriber::registry()
         .with(

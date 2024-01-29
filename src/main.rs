@@ -21,19 +21,15 @@ async fn main() {
     };
 
     // Lanzar o servidor
-    let listener = TcpListener::bind("0.0.0.0:3000")
-        .await
-        .expect("Fallo ó crear o servidor");
+    let listener = TcpListener::bind("0.0.0.0:3000").await.unwrap();
 
     info!(
         "Servidor activo en http://{}",
-        listener
-            .local_addr()
-            .expect("Fallo obtendo o enderezo do servidor")
+        listener.local_addr().unwrap()
     );
 
     axum::serve(listener, app)
         .with_graceful_shutdown(shutdown_signal())
         .await
-        .expect("Fallo executando o servidor");
+        .unwrap();
 }
