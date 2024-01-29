@@ -1,6 +1,6 @@
 use askama::Template;
 use axum::extract::{Query, State};
-use chrono::{Datelike, Days, Local};
+use chrono::{Datelike, Local};
 use serde::Deserialize;
 use time::Date;
 
@@ -140,8 +140,7 @@ pub async fn calendario(State(state): State<SharedState>) -> TemplateCalendarioP
     peliculas.sort_by(|a, b| a.fecha_ciclo.cmp(&b.fecha_ciclo));
 
     // Eleximos as películas que aínda non foron
-    // TODO: Eliminar checked_sub_days, é só para probar as pelis pasadas
-    let hoxe = Local::now().checked_sub_days(Days::new(320)).unwrap();
+    let hoxe = Local::now();
     let hoxe = Date::from_ordinal_date(hoxe.year(), hoxe.ordinal() as u16).unwrap();
     peliculas.retain(|p| p.fecha_ciclo.is_some() && p.fecha_ciclo.unwrap() > hoxe);
 

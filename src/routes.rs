@@ -1,4 +1,11 @@
-use axum::{extract::State, routing::get, Router};
+use std::time::Duration;
+
+use axum::{
+    extract::{MatchedPath, Request, State},
+    routing::get,
+    Router,
+};
+use tower_http::{timeout::TimeoutLayer, trace::TraceLayer};
 
 use crate::{db::RepoPeliculas, SharedState};
 
@@ -50,6 +57,22 @@ pub fn router() -> Router {
             get(blog::artigo_blog),
         )
         .nest("/api", api)
+        .layer((
+            TraceLayer::new_for_http()
+                .make_span_with(|req: &Request| {
+                    let method = req.method();
+                    let uri = req.uri();
+
+                    let matched_path = req
+                        .extensions()
+                        .get::<MatchedPath>()
+                        .map(|matched_path| matched_path.as_str());
+
+                    tracing::debug_span!("request", %method, %uri, matched_path)
+                })
+                .on_failure(()),
+            TimeoutLayer::new(Duration::from_secs(10)),
+        ))
 }
 
 // ···············

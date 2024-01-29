@@ -56,7 +56,7 @@ Unha vez esté todo listo podemos modificar a táboa de películas.
         2. Engadir a imaxe á carpeta `assets/posters/[CURSO]` usando o editor web e facer un commit. Se vas a engadir varios é mellor facer un só commit con todos. Verificar que está ben engadida
         3. Copiar o nome de arquivo **sen** a extensión (por exemplo `02_irma_vep`) e pegalo na columna _poster_
 
-**Importante:** Non se verán os cambios ata que a páxina borre a caché. Isto sucede cada 6 horas, para facelo manualmente preme [este enlace](https://cinemazarelos.com/api/clear/cache) cando haxas cambiado todo.
+**Importante:** Non se verán os cambios ata que a páxina se actualice. Podes comprobar o estado neste [enlace](https://github.com/eerii/cinemazarelos/actions/workflows/deploy.yaml). Este proceso soe tardar sobre 2 minutos.
 
 ### Nivel 2: Crear ou editar unha nova páxina estática
 

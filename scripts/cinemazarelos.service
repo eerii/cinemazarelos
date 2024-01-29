@@ -6,6 +6,8 @@ After=network.target
 Type=simple
 WorkingDirectory=/home/ubuntu/cinemazarelos
 ExecStart=/home/ubuntu/cinemazarelos/cinemazarelos
+Restart=always
+RestartSec=10
 
 [Install]
 WantedBy=default.target

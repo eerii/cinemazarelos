@@ -1,4 +1,4 @@
-use cinemazarelos::{init_tracing, routes::router};
+use cinemazarelos::{init_tracing, routes::router, shutdown_signal};
 use tokio::net::TcpListener;
 use tower_http::services::ServeDir;
 use tracing::info;
@@ -21,11 +21,19 @@ async fn main() {
     };
 
     // Lanzar o servidor
-    let listener = TcpListener::bind("0.0.0.0:3000").await.unwrap();
+    let listener = TcpListener::bind("0.0.0.0:3000")
+        .await
+        .expect("Fallo ó crear o servidor");
+
     info!(
         "Servidor activo en http://{}",
-        listener.local_addr().unwrap()
+        listener
+            .local_addr()
+            .expect("Fallo obtendo o enderezo do servidor")
     );
 
-    axum::serve(listener, app).await.unwrap();
+    axum::serve(listener, app)
+        .with_graceful_shutdown(shutdown_signal())
+        .await
+        .expect("Fallo executando o servidor");
 }

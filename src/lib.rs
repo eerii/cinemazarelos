@@ -2,7 +2,7 @@ use std::{fmt::Display, str::FromStr, sync::Arc};
 
 use db::Conexion;
 use serde::{de, Deserialize, Deserializer};
-use tokio::sync::RwLock;
+use tokio::{signal, sync::RwLock};
 use tracing_subscriber::{fmt::time::OffsetTime, layer::SubscriberExt, util::SubscriberInitExt};
 
 mod db;
@@ -30,7 +30,7 @@ pub fn init_tracing() {
     let level = if cfg!(debug_assertions) {
         "cinemazarelos=debug,tower_http=debug"
     } else {
-        "cinemazarelos=info,tower_http=info"
+        "cinemazarelos=debug,tower_http=info"
     };
 
     tracing_subscriber::registry()
@@ -53,5 +53,31 @@ where
     match opt.as_deref() {
         None | Some("") => Ok(None),
         Some(s) => FromStr::from_str(s).map_err(de::Error::custom).map(Some),
+    }
+}
+
+// Graceful shutdown
+
+pub async fn shutdown_signal() {
+    let ctrl_c = async {
+        signal::ctrl_c()
+            .await
+            .expect("failed to install Ctrl+C handler");
+    };
+
+    #[cfg(unix)]
+    let terminate = async {
+        signal::unix::signal(signal::unix::SignalKind::terminate())
+            .expect("failed to install signal handler")
+            .recv()
+            .await;
+    };
+
+    #[cfg(not(unix))]
+    let terminate = std::future::pending::<()>();
+
+    tokio::select! {
+        _ = ctrl_c => {},
+        _ = terminate => {},
     }
 }
