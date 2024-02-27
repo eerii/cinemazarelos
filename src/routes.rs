@@ -32,6 +32,8 @@ pub const CDN_URL: &str = if cfg!(debug_assertions) {
 pub fn router() -> Router {
     let state = SharedState::default();
 
+    // TODO: 404 gatetes
+
     let api = Router::new()
         .route("/ping", get(noop))
         .route("/clear/cache", get(clear_cache))
