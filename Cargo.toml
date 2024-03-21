@@ -19,11 +19,20 @@ dotenvy_macro = "0.15"
 futures = "0.3"
 gray_matter = "0.2"
 lazy_static = "1.4"
-reqwest = { version = "0.11", features = ["json", "blocking", "native-tls-vendored"] }
+reqwest = { version = "0.12", features = [
+  "json",
+  "blocking",
+  "native-tls-vendored",
+] }
 serde = { version = "1.0", features = ["derive"] }
-sqlx = { version = "0.7", features = [ "runtime-tokio", "tls-rustls", "postgres", "time" ] }
+sqlx = { version = "0.7", features = [
+  "runtime-tokio",
+  "tls-rustls",
+  "postgres",
+  "time",
+] }
 time = { version = "0.3", features = ["serde", "local-offset"] }
-tokio = { version = "1.35", features = ["full"] }
+tokio = { version = "1.36", features = ["full"] }
 tower = "0.4"
 tower-http = { version = "0.5", features = ["fs", "trace", "timeout"] }
 tower-livereload = "0.9"
