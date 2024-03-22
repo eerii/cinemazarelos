@@ -40,6 +40,7 @@ pub fn engadir_poster(peliculas: &mut Vec<Pelicula>) {
 pub struct TemplateListaPeliculas {
     peliculas: Vec<Pelicula>,
     paxina: Option<usize>,
+    meses: [&'static str; 12],
 }
 
 #[derive(Debug, Deserialize)]
@@ -52,7 +53,6 @@ pub async fn lista(
     State(state): State<SharedState>,
     Query(params): Query<ParamsLista>,
 ) -> TemplateListaPeliculas {
-    // TODO: Posters na lista
     // TODO: Popup con detalles das películas
 
     let mut state = state.write().await;
@@ -79,6 +79,7 @@ pub async fn lista(
     TemplateListaPeliculas {
         peliculas,
         paxina: seguinte,
+        meses: NOMES_MESES,
     }
 }
 
@@ -107,9 +108,29 @@ pub async fn carrousel(
     let mut state = state.write().await;
     let mut peliculas = state.db.list().await;
 
+    // Ordeamos por data
+    peliculas.sort_by(|a, b| a.fecha_ciclo.cmp(&b.fecha_ciclo));
+
+    // Eliminamos as peliculas mais antigas que hoxe
+    let hoxe = Local::now();
+    let hoxe = Date::from_ordinal_date(hoxe.year(), hoxe.ordinal() as u16).unwrap();
+    let mut peliculas_seguintes = peliculas.clone();
+    peliculas_seguintes.retain(|p| p.fecha_ciclo.is_some() && p.fecha_ciclo.unwrap() >= hoxe);
+
     // Ordeamos por data e eleximos as n últimas películas
-    peliculas.sort_by(|a, b| b.fecha_ciclo.cmp(&a.fecha_ciclo));
     if let Some(n) = params.n {
+        // Se non hai suficientes en peliculas seguintes, engadimos as pasadas
+        peliculas = if peliculas_seguintes.len() < n {
+            let n = n - peliculas_seguintes.len();
+            peliculas.sort_by(|a, b| b.fecha_ciclo.cmp(&a.fecha_ciclo));
+            peliculas.retain(|p| p.fecha_ciclo.is_some() && p.fecha_ciclo.unwrap() < hoxe);
+            peliculas.truncate(n);
+            let mut p = peliculas_seguintes;
+            p.extend(peliculas);
+            p
+        } else {
+            peliculas_seguintes
+        };
         peliculas.truncate(n);
     }
 
@@ -127,7 +148,7 @@ pub async fn carrousel(
 #[template(path = "componentes/calendario_peliculas.html")]
 pub struct TemplateCalendarioPeliculas {
     peliculas: Vec<Pelicula>,
-    nomes: [&'static str; 12],
+    meses: [&'static str; 12],
 }
 
 pub async fn calendario(State(state): State<SharedState>) -> TemplateCalendarioPeliculas {
@@ -146,6 +167,6 @@ pub async fn calendario(State(state): State<SharedState>) -> TemplateCalendarioP
 
     TemplateCalendarioPeliculas {
         peliculas,
-        nomes: NOMES_MESES,
+        meses: NOMES_MESES,
     }
 }

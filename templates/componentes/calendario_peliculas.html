@@ -13,12 +13,12 @@
             align-items: center;
         }
 
-        this #cadro-data>p {
+        this #cadro-data > p, this #cadro-data > span {
             margin: 0;
             color: var(--bg);
         }
 
-        this #cadro-data>p:first-child {
+        this #cadro-data > p:first-child {
             font-size: 1.3rem;
         }
     </style>
@@ -27,8 +27,11 @@
     <div class="tarxeta">
         <div id="cadro-data">
             <p>{{ format!("{}", pelicula.fecha_ciclo.unwrap().day()) }}</p>
-            {% let n = u8::try_from(pelicula.fecha_ciclo.unwrap().month()).unwrap() %}
-            {{ nomes[0] }}
+            <span
+                >{% let n =
+                usize::from(u8::try_from(pelicula.fecha_ciclo.unwrap().month()).unwrap())
+                %} {{ meses[n-1] }}
+            </span>
         </div>
         <p>{{ pelicula.titulo }}</p>
     </div>

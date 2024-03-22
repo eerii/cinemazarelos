@@ -2,20 +2,46 @@
     <style>
         this {
             margin-bottom: var(--spacing);
+            max-width: 64rem;
+
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--spacing);
+        }
+
+        this > div {
+            width: 250px;
+            flex-direction: column;
+            margin-bottom: var(--spacing);
+        }
+
+        this h4 {
+            padding: 0;
+            flex-grow: 1;
+            text-align: center;
         }
     </style>
 
     {% for pelicula in peliculas %}
     <div class="tarxeta">
-        <p>
-        {{ format!("{:?}", pelicula.fecha_ciclo.unwrap()) }} - {{ pelicula.titulo }}
-        </p>
+        <img src="{{ pelicula.poster.clone().unwrap_or(" /assets/posters/sen-portada.webp".into()) }}"
+            alt="Poster {{ pelicula.titulo }}" width="200" />
+        <h4>{{ pelicula.titulo }}</h4>
+        <span>{% let n =
+            usize::from(u8::try_from(pelicula.fecha_ciclo.unwrap().month()).unwrap()) %}
+            {{ pelicula.fecha_ciclo.unwrap().day() }}
+            {{ meses[n-1] }}
+            {{ pelicula.fecha_ciclo.unwrap().year() }}</span>
     </div>
     {% endfor %}
 </div>
 
 {% if paxina.is_some() %}
-<button class='btn' hx-get="/api/peliculas/lista?paxina={{ paxina.unwrap() }}" hx-swap="outerHTML">
-     Cargar mais
+<button
+    class="btn"
+    hx-get="/api/peliculas/lista?paxina={{ paxina.unwrap() }}"
+    hx-swap="outerHTML"
+>
+    Cargar mais
 </button>
 {% endif %}
