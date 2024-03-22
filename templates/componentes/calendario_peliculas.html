@@ -1,6 +1,12 @@
 <h3>Calendario</h3>
 <div>
     <style>
+        this {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing);
+        }
+
         this #cadro-data {
             background-color: var(--accent);
             height: 3rem;
@@ -13,7 +19,8 @@
             align-items: center;
         }
 
-        this #cadro-data > p, this #cadro-data > span {
+        this #cadro-data > p,
+        this #cadro-data > span {
             margin: 0;
             color: var(--bg);
         }

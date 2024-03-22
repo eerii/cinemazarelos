@@ -20,7 +20,7 @@
             height: 40rem;
             width: 100%;
             z-index: -100;
-        }
+        } 
     </style>
 </div>
 
@@ -39,6 +39,16 @@
             flex: 50%;
         }
 
+        this #enviar {
+            padding: 0.3rem 1rem;
+        }
+
+        this #enviar:hover {
+            cursor: pointer;
+            background-color: var(--fg);
+            transform: scale(1.05);
+        }
+
         @media md- {
             this { flex-direction: column; }
         }
@@ -48,6 +58,7 @@
         <h3>Recibe as nosas novas no teu correo</h3>
         <div class="tarxeta">
             <input type="email" name="email" placeholder="Email">
+            <input type="submit" value="Suscribirme" id="enviar">
         </div>
         </div>
 
