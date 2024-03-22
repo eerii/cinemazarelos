@@ -107,12 +107,18 @@ h6 {
     padding: var(--spacing) 0;
 }
 h1 {
+    font-size: 2rem;
 }
 h2 {
+    font-size: 3rem;
 }
 h3 {
+    font-size: 1.5rem;
 }
 h4 {
+    font-size: 1.2rem;
+    font-family: var(--font-text);
+    padding-top: 0;
 }
 h5 {
 }
