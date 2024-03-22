@@ -7,6 +7,10 @@
             gap: var(--spacing);
         }
 
+        this .tarxeta {
+            cursor: pointer;
+        }
+
         this #cadro-data {
             background-color: var(--accent);
             height: 3rem;
@@ -31,7 +35,10 @@
     </style>
 
     {% for pelicula in peliculas %}
-    <div class="tarxeta">
+    <div
+        class="tarxeta"
+        onclick="location.href='/peliculas/{{pelicula.id.unwrap()}}'"
+    >
         <div id="cadro-data">
             <p>{{ format!("{}", pelicula.fecha_ciclo.unwrap().day()) }}</p>
             <span

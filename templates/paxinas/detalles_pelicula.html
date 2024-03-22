@@ -8,9 +8,70 @@
 
 {% if pelicula.is_some() %} {% let p = pelicula.as_ref().unwrap() %}
 
-<h2>{{ p.titulo}}</h2>
+<div>
+    <style>
+        this {
+            display: flex;
+            flex-direction: row;
+        }
 
-<div class="paragrafos"></div>
+        this > #side {
+            width: 16rem;
+        }
+
+        this img {
+            margin: var(--spacing) 0;
+        }
+
+        this b {
+            color: var(--accent);
+        }
+
+        @media md- {
+            this {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+
+    <div id="side">
+        <img src="{{ p.poster.clone().unwrap_or(" /assets/posters/sen-portada.webp".into()) }}"></img>
+        <p>{{ format!("{}", p.fecha_ciclo.unwrap()) }}</p>
+        {% if p.presentado_por.is_some() %}
+        <p><b>Presentado por:</b></p>
+        <ul>
+        {% for p in p.presentado_por.clone().unwrap() %}
+            <li>{{ p }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+        {% if p.cartel_por.is_some() %}
+        <p><b>Cartel por:</b></p>
+        <ul>
+        {% for p in p.cartel_por.clone().unwrap() %}
+            <li>{{ p }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <div>
+        <h2>{{ p.titulo}}</h2>
+
+        <div class="paragrafos">
+            <p><b>Director:</b> {{ p.director }}</p>
+            <p><b>Ano de publicacion:</b> {{ p.publicacion.unwrap_or(0) }}</p>
+            <p><b>Duración:</b> {{ p.duracion.unwrap_or(0) }}min</p>
+            <p><b>Idioma:</b> {{ p.idioma.clone().unwrap_or("Descoñecido".into()) }}</p>
+            {% if p.trigger_warnings.is_some() %}
+            <p><b>Trigger warnings:</b> {{ p.trigger_warnings.clone().unwrap() }}</p>
+            {% endif %}
+            <hr />
+            <p>{{ p.sinopsis_gl.clone().unwrap_or("Non hai sinopse".into()) }}</p>
+        </div>
+    </div>
+</div>
 
 {% else %}
 

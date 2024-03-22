@@ -15,6 +15,10 @@
             min-width: 200px;
         }
 
+        this .tarxeta {
+            cursor: pointer;
+        }
+
         this .tarxeta.inactive {
             flex-basis: fit-content;
         }
@@ -64,7 +68,7 @@
     </style>
 
     {% for pelicula in peliculas %}
-    <div class="tarxeta{% if loop.index> 1 %} inactive{% endif %}">
+    <div class="tarxeta{% if loop.index> 1 %} inactive{% endif %}" onclick="location.href='/peliculas/{{pelicula.id.unwrap()}}'">
         <img src="{{ pelicula.poster.clone().unwrap_or(" /assets/posters/sen-portada.webp".into()) }}"
             alt="Poster {{ pelicula.titulo }}" width="200" />
 

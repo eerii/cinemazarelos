@@ -19,12 +19,16 @@
             flex-grow: 1;
             text-align: center;
         }
+
+        this .tarxeta {
+            cursor: pointer;
+        }
     </style>
 
     {% for pelicula in peliculas %}
-    <div class="tarxeta">
+    <div class="tarxeta" onclick="location.href='/peliculas/{{pelicula.id.unwrap()}}'">
         <img src="{{ pelicula.poster.clone().unwrap_or(" /assets/posters/sen-portada.webp".into()) }}"
-            alt="Poster {{ pelicula.titulo }}" width="200" />
+            alt="Poster {{ pelicula.titulo }}" width="200"></img>
         <h4>{{ pelicula.titulo }}</h4>
         <span>{% let n =
             usize::from(u8::try_from(pelicula.fecha_ciclo.unwrap().month()).unwrap()) %}

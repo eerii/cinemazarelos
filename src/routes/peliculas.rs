@@ -46,7 +46,14 @@ pub async fn detalles_pelicula(
     Path(id): Path<i64>,
 ) -> TemplateDetallesPelicula {
     let mut state = state.write().await;
-    let pelicula = state.db.pelicula(id).await;
+    let mut pelicula = state.db.pelicula(id).await;
+
+    if pelicula.is_some() {
+        let mut v = vec![pelicula.unwrap()];
+        engadir_poster(&mut v);
+        pelicula = v.into_iter().next();
+    }
+
     TemplateDetallesPelicula { pelicula }
 }
 
