@@ -1,21 +1,55 @@
 <!-- Podedes engadir máis bloques aquí -->
 
 <div id="novidades">
-    <h2>Fanzine</h2>
-    <div class="tarxeta">
-        <style>
-            this img:hover {
-                transform: scale(1.1);
-                filter: drop-shadow(var(--radius) var(--radius) 10px black);
-            }
-        </style>
+    <h2>Festival Cine Barato</h2>
+    <style>
+        this > div {
+            cursor: pointer;
+        }
+        this > div > div {
+            flex-basis: fit-content;
+        }
+        this img:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(var(--radius) var(--radius) 10px black);
+        }
+    </style>
+    <div class="tarxeta" onclick="window.location.href='/cine_barato'">
         <div>
-            <p>Estamos moi emocionades de, por fin, poder compartir un pequeno adianto do que é o Fanzine do noso ciclo
-                de cine!</p>
-            <p>Poderedes atopar unha portada chulísima, os cartaces do ciclo do ano pasado e unha recopilación de textos
-                escritos poles presentadores dos filmes!</p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+            </p>
         </div>
-        <a href="https://raw.githubusercontent.com/eerii/cinemazarelos/main/assets/fanzines/fanzine_2122.pdf"
-            target="_blank"><img src="/assets/fanzines/fanzine_2122.webp" width="250" alt="Primeiro fanzine" /></a>
+        <img
+            src="/assets/posters/sen-portada.webp"
+            width="200"
+            alt="Festival Cine Barato"
+        />
+    </div>
+
+    <h2>Fanzine</h2>
+    <div
+        class="tarxeta"
+        onclick="window.open('https://raw.githubusercontent.com/eerii/cinemazarelos/main/assets/fanzines/fanzine_2122.pdf', '_blank')"
+    >
+        <img
+            src="/assets/fanzines/fanzine_2122.webp"
+            width="200"
+            alt="Primeiro fanzine"
+        />
+        <div>
+            <p>
+                Estamos moi emocionades de, por fin, poder compartir un pequeno
+                adianto do que é o Fanzine do noso ciclo de cine!
+            </p>
+            <p>
+                Poderedes atopar unha portada chulísima, os cartaces do ciclo do
+                ano pasado e unha recopilación de textos escritos poles
+                presentadores dos filmes!
+            </p>
+        </div>
     </div>
 </div>

@@ -23,10 +23,6 @@
     border-color: var(--accent);
 }
 
-.tarxeta:not(.tarxeta:last-of-type) {
-    margin-bottom: var(--spacing);
-}
-
 /* TODO: Efecto brillo bordes */
 
 /* Paragrafos */

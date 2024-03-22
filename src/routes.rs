@@ -55,6 +55,10 @@ pub fn router() -> Router {
     Router::new()
         .route("/", get(paxinas::inicio))
         .route("/sobre_nos", get(paxinas::sobre_nos))
+        .route(
+            "/cine_barato",
+            get(paxinas::cine_barato),
+        )
         .route("/peliculas", get(paxinas::peliculas))
         .route("/blog", get(blog::lista_blog))
         .route(

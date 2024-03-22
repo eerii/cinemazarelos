@@ -23,6 +23,14 @@ pub async fn sobre_nos() -> TemplateSobreNos {
 }
 
 #[derive(Template)]
+#[template(path = "paxinas/cine_barato.html")]
+pub struct TemplateCineBarato;
+
+pub async fn cine_barato() -> TemplateCineBarato {
+    TemplateCineBarato {}
+}
+
+#[derive(Template)]
 #[template(path = "paxinas/peliculas.html")]
 pub struct TemplatePeliculas;
 

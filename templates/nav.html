@@ -9,7 +9,6 @@
 
             padding: 0 calc(var(--spacing) * 2);
 
-            animation-name: escurecer_fondo;
             animation-timeline: scroll(root);
             animation-timing-function: linear;
         }
@@ -22,6 +21,8 @@
 
             height: var(--nav-height);
             border-bottom: 1px solid var(--bg-lighter);
+            background-color: var(--bg-darker);
+            z-index: 30;
         }
 
         this span {
@@ -66,13 +67,18 @@
             scale: 1.05;
         }
 
-        @keyframes escurecer_fondo {
+        this #banner {
+            position: fixed;
+            top: calc(var(--spacing) * 0.5);
+            width: 20rem;
+            left: calc(50% - 10rem);
 
-            40%,
-            to {
-                background-color: var(--bg);
-                backdrop-filter: blur(0.5rem);
-            }
+            background-color: var(--fg);
+            color: var(--bg);
+            text-align: center;
+
+            padding: calc(var(--spacing) * 0.75);
+            border-radius: calc(var(--radius) * 2);
         }
 
         @keyframes logo_hover {
@@ -97,21 +103,46 @@
         <a href="/peliculas">Películas</a>
         <a href="/blog">Blog</a>
         <a href="/sobre_nos">Sobre nós</a>
-        <a href="https://www.instagram.com/cinemazarelos" target="_blank" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="24"
-                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                stroke-linecap="round" stroke-linejoin="round">
+        <a
+            href="https://www.instagram.com/cinemazarelos"
+            target="_blank"
+            aria-label="Instagram"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-brand-instagram"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <rect x="4" y="4" width="16" height="16" rx="4" />
                 <circle cx="12" cy="12" r="3" />
                 <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
             </svg>
         </a>
-        <a href="https://www.filmaffinity.com/es/userreviews.php?user_id=5661081" target="_blank"
-            aria-label="Filmaffinity">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="24"
-                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                stroke-linecap="round" stroke-linejoin="round">
+        <a
+            href="https://www.filmaffinity.com/es/userreviews.php?user_id=5661081"
+            target="_blank"
+            aria-label="Filmaffinity"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-brand-instagram"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <rect x="4" y="4" width="16" height="16" rx="2" />
                 <line x1="8" y1="4" x2="8" y2="20" />
@@ -123,10 +154,23 @@
                 <line x1="16" y1="16" x2="20" y2="16" />
             </svg>
         </a>
-        <a href="https://letterboxd.com/cinemazarelos" target="_blank" aria-label="Letterboxd">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="24"
-                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                stroke-linecap="round" stroke-linejoin="round">
+        <a
+            href="https://letterboxd.com/cinemazarelos"
+            target="_blank"
+            aria-label="Letterboxd"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-brand-instagram"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
                 <g transform="matrix(1,0,0,1,0.28094,0.108175)">
                     <circle cx="5.254" cy="11.892" r="4.395" />
                 </g>
@@ -138,5 +182,6 @@
                 </g>
             </svg>
         </a>
+        <a id="banner" href="/cine_barato">Descubre o festival Cine Barato</a>
     </div>
 </div>
