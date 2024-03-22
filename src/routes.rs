@@ -9,7 +9,6 @@ use axum::{
 use dotenvy_macro::dotenv;
 use serde::Deserialize;
 use tower_http::{timeout::TimeoutLayer, trace::TraceLayer};
-use tracing::error;
 
 use self::analytics::Analytics;
 use crate::{db::RepoPeliculas, SharedState};
