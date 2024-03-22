@@ -19,9 +19,10 @@ mod novidades;
 mod paxinas;
 mod peliculas;
 
-// Utilizamos github como CDN para assets (posters e imaxes)
+// Poderíamos utilizar github como CDN para assets (posters e imaxes)
 // Isto permite non ter que facer un build se só se engaden assets
-pub const CDN_URL: &str = if cfg!(debug_assertions) {
+pub const GITHUB_CDN: bool = false;
+pub const CDN_URL: &str = if cfg!(debug_assertions) || !GITHUB_CDN {
     "/assets"
 } else {
     "https://raw.githubusercontent.com/eerii/cinemazarelos/main/assets"
