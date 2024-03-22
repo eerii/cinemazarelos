@@ -39,16 +39,6 @@
             flex: 50%;
         }
 
-        this #enviar {
-            padding: 0.3rem 1rem;
-        }
-
-        this #enviar:hover {
-            cursor: pointer;
-            background-color: var(--fg);
-            transform: scale(1.05);
-        }
-
         @media md- {
             this { flex-direction: column; }
         }
@@ -57,9 +47,11 @@
         <div>
         <h3>Recibe as nosas novas no teu correo</h3>
         <div class="tarxeta">
-            <input type="email" name="email" placeholder="Email">
-            <input type="submit" value="Suscribirme" id="enviar">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="submit" value="Suscribirme" id="enviar"
+                hx-post="/api/subscribe/email" hx-target="#aviso" hx-include="[name='email']" hx-swap="innerHTML" />
         </div>
+            <span id="aviso"></span>
         </div>
 
         <div hx-get="/api/peliculas/calendario" hx-trigger="load"></div>

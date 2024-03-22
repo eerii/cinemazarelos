@@ -1,12 +1,15 @@
 use std::time::Duration;
 
 use axum::{
-    extract::{MatchedPath, Request, State},
-    routing::get,
+    extract::{Form, MatchedPath, Request, State},
+    response::Html,
+    routing::{get, post},
     Router,
 };
 use dotenvy_macro::dotenv;
+use serde::Deserialize;
 use tower_http::{timeout::TimeoutLayer, trace::TraceLayer};
+use tracing::error;
 
 use self::analytics::Analytics;
 use crate::{db::RepoPeliculas, SharedState};
@@ -37,6 +40,10 @@ pub fn router() -> Router {
     let api = Router::new()
         .route("/ping", get(noop))
         .route("/clear/cache", get(clear_cache))
+        .route(
+            "/subscribe/email",
+            post(registrar_correo),
+        )
         .route(
             "/peliculas/carrousel",
             get(peliculas::carrousel),
@@ -90,12 +97,46 @@ pub fn router() -> Router {
 // ···············
 
 // Non fai nada
-pub async fn noop() {}
+async fn noop() {}
 
 // Limpa o caché da base de datos
-pub async fn clear_cache(State(state): State<SharedState>) {
+async fn clear_cache(State(state): State<SharedState>) {
     let mut state = state.write().await;
     state.db.clear_cache().await;
 }
 
-// TODO: Suscribirse por correo (usar debouncer para non sobrecargar bd)
+// Rexistrar o correo electrónico
+#[derive(Deserialize, Debug)]
+struct InputCorreo {
+    email: String,
+}
+
+async fn registrar_correo(
+    State(state): State<SharedState>,
+    Form(input): Form<InputCorreo>,
+) -> Html<String> {
+    let email = input.email;
+
+    // TODO: Mejor verificación
+    if email.is_empty() {
+        return Html("O correo está vacío".into());
+    }
+
+    if !email.contains('@') {
+        return Html("O correo debe conter un '@'".into());
+    }
+
+    let mut state = state.write().await;
+    match state.db.insert_email(email).await {
+        Ok(_) => Html("Correo rexistrado".into()),
+        Err(e) => match e {
+            sqlx::Error::Database(e) if e.is_unique_violation() => {
+                Html("O correo xa está rexistrado".into())
+            },
+            _ => Html(format!(
+                "Error desconocido ó rexistrar o correo: {}",
+                e
+            )),
+        },
+    }
+}

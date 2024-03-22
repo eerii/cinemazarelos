@@ -2,7 +2,12 @@ use std::time::{Duration, SystemTime};
 
 use dotenvy_macro::dotenv;
 use serde::{Deserialize, Serialize};
-use sqlx::{postgres::PgPoolOptions, query_as, types::time::Date, FromRow, Pool, Postgres};
+use sqlx::{
+    postgres::{PgPoolOptions, PgQueryResult},
+    query_as,
+    types::time::Date,
+    FromRow, Pool, Postgres,
+};
 use tracing::{debug, warn};
 
 const CACHE_DURATION: Duration = Duration::from_secs(6 * 60 * 60);
@@ -24,6 +29,11 @@ pub struct Pelicula {
     pub fecha_ciclo: Option<Date>,
     pub cartel_por: Option<Vec<String>>,
     pub presentado_por: Option<Vec<String>>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, FromRow)]
+pub struct Email {
+    pub email: String,
 }
 
 // Caché de datos
@@ -114,6 +124,8 @@ pub trait RepoPeliculas {
     async fn clear_cache(&mut self);
 
     async fn list(&mut self) -> Vec<Pelicula>;
+
+    async fn insert_email(&mut self, email: String) -> Result<PgQueryResult, sqlx::Error>;
 }
 
 impl RepoPeliculas for Conexion {
@@ -148,5 +160,13 @@ impl RepoPeliculas for Conexion {
             .write(|cache| cache.peliculas = CacheLine::new(CACHE_DURATION, peliculas));
 
         self.cache.peliculas.get().cloned().unwrap()
+    }
+
+    async fn insert_email(&mut self, email: String) -> Result<PgQueryResult, sqlx::Error> {
+        let pool = self.get().await;
+        sqlx::query("INSERT INTO emails (email) VALUES ($1)")
+            .bind(email)
+            .execute(pool)
+            .await
     }
 }
