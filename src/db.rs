@@ -123,6 +123,7 @@ pub trait RepoPeliculas {
     async fn get(&mut self) -> &Pool<Postgres>;
     async fn clear_cache(&mut self);
 
+    async fn pelicula(&mut self, id: i64) -> Option<Pelicula>;
     async fn list(&mut self) -> Vec<Pelicula>;
 
     async fn insert_email(&mut self, email: String) -> Result<PgQueryResult, sqlx::Error>;
@@ -144,6 +145,18 @@ impl RepoPeliculas for Conexion {
     async fn clear_cache(&mut self) {
         self.cache.clear();
         debug!("Limpouse a caché da base de datos");
+    }
+
+    async fn pelicula(&mut self, id: i64) -> Option<Pelicula> {
+        if let Some(cache) = self.cache.peliculas.get().cloned() {
+            return cache.into_iter().find(|p| p.id == Some(id));
+        }
+
+        query_as::<_, Pelicula>("SELECT * FROM peliculas WHERE id = $1")
+            .bind(id)
+            .fetch_optional(self.get().await)
+            .await
+            .unwrap()
     }
 
     async fn list(&mut self) -> Vec<Pelicula> {

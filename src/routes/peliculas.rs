@@ -1,5 +1,5 @@
 use askama::Template;
-use axum::extract::{Query, State};
+use axum::extract::{Path, Query, State};
 use chrono::{Datelike, Local};
 use serde::Deserialize;
 use time::Date;
@@ -29,6 +29,25 @@ pub fn engadir_poster(peliculas: &mut Vec<Pelicula>) {
             poster
         );
     }
+}
+
+// ········
+// Detalles
+// ········
+
+#[derive(Template)]
+#[template(path = "paxinas/detalles_pelicula.html")]
+pub struct TemplateDetallesPelicula {
+    pelicula: Option<Pelicula>,
+}
+
+pub async fn detalles_pelicula(
+    State(state): State<SharedState>,
+    Path(id): Path<i64>,
+) -> TemplateDetallesPelicula {
+    let mut state = state.write().await;
+    let pelicula = state.db.pelicula(id).await;
+    TemplateDetallesPelicula { pelicula }
 }
 
 // ·····

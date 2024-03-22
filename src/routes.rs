@@ -67,12 +67,17 @@ pub fn router() -> Router {
             get(paxinas::cine_barato),
         )
         .route("/peliculas", get(paxinas::peliculas))
+        .route(
+            "/peliculas/:pelicula",
+            get(peliculas::detalles_pelicula),
+        )
         .route("/blog", get(blog::lista_blog))
         .route(
             "/blog/:articulo",
             get(blog::artigo_blog),
         )
         .nest("/api", api)
+        .with_state(state)
         .layer((
             TraceLayer::new_for_http()
                 .make_span_with(|req: &Request| {

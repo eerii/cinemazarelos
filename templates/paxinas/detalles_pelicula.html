@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+<!-- -->
+
+{% block content %}
+
+<!-- -->
+
+{% if pelicula.is_some() %} {% let p = pelicula.as_ref().unwrap() %}
+
+<h2>{{ p.titulo}}</h2>
+
+<div class="paragrafos"></div>
+
+{% else %}
+
+<h3>Pelicula non encontrada</h3>
+
+{% endif %}
+
+<!-- -->
+
+{% endblock %}
