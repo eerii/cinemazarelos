@@ -42,5 +42,9 @@
         </div>
         <p>{{ pelicula.titulo }}</p>
     </div>
-    {% endfor %}
+    {% endfor %} {% if peliculas.is_empty() %}
+    <div class="tarxeta">
+        <p>Todavía non hai mais sesións programadas</p>
+    </div>
+    {% endif %}
 </div>
