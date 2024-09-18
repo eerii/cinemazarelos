@@ -77,4 +77,4 @@ TODO: Explicar backend
 
 ### Extra
 
-Podes comprobar se hai problemas ca web [aquí](![Uptime Robot status](https://stats.uptimerobot.com/I3Dj3M0VU9/796270994).
+Podes comprobar se hai problemas ca web aquí: ![Uptime Robot status](https://stats.uptimerobot.com/I3Dj3M0VU9/796270994).

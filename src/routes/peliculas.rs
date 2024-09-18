@@ -189,7 +189,7 @@ pub async fn calendario(State(state): State<SharedState>) -> TemplateCalendarioP
     // Eleximos as películas que aínda non foron
     let hoxe = Local::now();
     let hoxe = Date::from_ordinal_date(hoxe.year(), hoxe.ordinal() as u16).unwrap();
-    peliculas.retain(|p| p.fecha_ciclo.is_some() && p.fecha_ciclo.unwrap() > hoxe);
+    peliculas.retain(|p| p.fecha_ciclo.is_some() && p.fecha_ciclo.unwrap() >= hoxe);
 
     TemplateCalendarioPeliculas {
         peliculas,
