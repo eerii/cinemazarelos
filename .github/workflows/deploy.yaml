@@ -62,7 +62,7 @@ jobs:
       - name: Construir 📦
         uses: houseabsolute/actions-rust-cross@v0
         with:
-          target: aarch64-unknown-linux-gnu
+          target: x86_64-unknown-linux-gnu
           toolchain: nightly
           args: --release
 
@@ -77,9 +77,9 @@ jobs:
 
       - name: Desplegar 🚀
         run: |
-          rsync -vmr -e "ssh -p ${{ secrets.SSH_PORT }}" ${{ github.workspace }}/target/aarch64-unknown-linux-gnu/release/cinemazarelos ${{ secrets.USER }}@${{ secrets.IP }}:/home/${{ secrets.USER }}/cinemazarelos/
-          rsync -vmr -e "ssh -p ${{ secrets.SSH_PORT }}" ${{ github.workspace }}/assets ${{ secrets.USER }}@${{ secrets.IP }}:/home/${{ secrets.USER }}/cinemazarelos/
-          ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.USER }}@${{ secrets.IP }} "sudo /root/restart --force"
+          rsync -vmr -e "ssh -p ${{ secrets.SSH_PORT }}" ${{ github.workspace }}/target/x86_64-unknown-linux-gnu/release/cinemazarelos ${{ secrets.USER }}@${{ secrets.IP }}:/${{ secrets.USER }}/cinemazarelos/
+          rsync -vmr -e "ssh -p ${{ secrets.SSH_PORT }}" ${{ github.workspace }}/assets ${{ secrets.USER }}@${{ secrets.IP }}:/${{ secrets.USER }}/cinemazarelos/
+          ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.USER }}@${{ secrets.IP }} "reboot -f"
 
       - name: Limpar caché da web 🧹
         run: |

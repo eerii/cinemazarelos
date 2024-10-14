@@ -31,5 +31,5 @@ async fn main() {
     axum::serve(listener, app)
         .with_graceful_shutdown(shutdown_signal())
         .await
-        .unwrap();
+        .unwrap()
 }
